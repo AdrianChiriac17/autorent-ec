@@ -1,0 +1,30 @@
+@model AutoRentCraiova.Models.Category
+
+<div class="modal-car-details" style="padding: 20px;">
+    <h2 class="modal-title" style="margin-bottom: 20px; text-align: center;">Adauga Categorie</h2>
+    
+    <form id="createCategoryForm" asp-action="Create" method="post" class="login-form" style="background: transparent; padding: 0; box-shadow: none; max-width: 100%;">
+        @Html.AntiForgeryToken()
+        
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="input-field" style="text-align: left;">
+                    <label asp-for="Name" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Nume Categorie</label>
+                    <input asp-for="Name" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                    <span asp-validation-for="Name" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 mt-4">
+            <button type="button" class="btn-login-submit custom-modal-close-btn" style="background: rgba(255, 255, 255, 0.1); color: white; width: auto; margin: 0; padding: 10px 25px;">Anuleaza</button>
+            <button type="submit" class="btn-login-submit" style="width: auto; margin: 0; padding: 10px 25px; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);">Adauga</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    if (window.$ && window.$.validator) {
+        $.validator.unobtrusive.parse("#createCategoryForm");
+    }
+</script>

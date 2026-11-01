@@ -1,0 +1,36 @@
+﻿@model AutoRentCraiova.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login - AutoRent Craiova";
+}
+
+<div class="login-page-wrapper">
+    
+    <div class="login-container">
+        <div class="login-logo">
+            <img src="~/imagini/logo.png" alt="Logo">
+        </div>
+
+        <form asp-action="Login" class="login-form">
+            <h2>Autentificare</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="input-field">
+                <input asp-for="Email" class="form-control" placeholder="Email" required>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <input asp-for="Password" class="form-control" placeholder="Parola" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn-sexy-primary" style="width: 100%; margin-top: 10px;">Intra in cont</button>
+
+            <div style="margin-top: 25px;">
+                <a asp-controller="Home" asp-action="Index" class="btn-sexy-secondary" style="width: 100%;">← Inapoi la Acasa</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

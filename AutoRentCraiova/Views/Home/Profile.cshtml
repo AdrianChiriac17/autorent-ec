@@ -1,0 +1,51 @@
+@model User
+
+@{
+    ViewData["Title"] = "Profil - AutoRent Craiova";
+}
+
+<div class="login-page-wrapper">
+    <div class="login-container" style="max-width: 600px; padding: 40px;"> 
+        <form asp-action="Profile" method="post" class="login-form">
+            <h2 class="text-center mb-4">@ViewData["Title"]</h2> 
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+            }
+            @if (TempData["InfoMessage"] != null)
+            {
+                <div class="alert alert-info">@TempData["InfoMessage"]</div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+            }
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-3"> 
+                <label asp-for="FullName" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;" class="form-label"></label> 
+                <input asp-for="FullName" class="form-control" placeholder="Nume complet" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Email" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;" class="form-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-4"> 
+                <label asp-for="CNP" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;" class="form-label"></label>
+                <input asp-for="CNP" class="form-control" placeholder="CNP" />
+                <span asp-validation-for="CNP" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn-sexy-primary w-100 mb-3">Salveaza</button> 
+
+            <div>
+                <a asp-controller="Home" asp-action="Index" class="btn-sexy-secondary w-100">← Inapoi Acasa</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

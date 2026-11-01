@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AutoRentCraiova.Models.Category>
+
+@{
+    ViewData["Title"] = "Categorii Caroserie";
+}
+
+<section class="fleet-section">
+    <div class="container">
+        <div class="fleet-header">
+            <h2 class="section-title">Categorii Caroserie</h2>
+            <div class="header-actions" style="display: flex; gap: 15px;">
+                <a asp-controller="Cars" asp-action="Index" class="btn-sexy-secondary">Inapoi la Flota</a>
+                <button type="button" data-action-type="create" class="btn-sexy-primary btn-open-modal">Adauga Categorie</button>
+            </div>
+        </div>
+
+        <div class="contact-form-card" style="margin-top: 30px;">
+            <table class="table table-dark table-striped" style="background: transparent; margin-bottom: 0;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #3498db;">
+                        <th style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; padding: 15px;">
+                            Denumire Categorie
+                        </th>
+                        <th style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; padding: 15px; text-align: right;">
+                            Actiuni
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td style="font-family: 'Montserrat', sans-serif; padding: 20px 15px; vertical-align: middle;">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td style="padding: 15px; text-align: right;">
+                            <div class="actions" style="justify-content: flex-end;">
+                                <button type="button" data-category-id="@item.Id" data-action-type="edit" class="action-btn btn-edit btn-open-modal" title="Edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                </button>
+                                <button type="button" data-url="/Categories/Delete/@item.Id" class="action-btn btn-delete btn-open-modal" title="Sterge">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- container modal -->
+<div id="categoryDetailsModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <span class="custom-modal-close">&times;</span>
+        <div id="modal-body-content">
+            <div class="loading-spinner">Incarcare...</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // event delegation in site.js
+        });
+    </script>
+}

@@ -1,0 +1,6 @@
+@model IEnumerable<AutoRentCraiova.Models.Car>
+
+@foreach (var item in Model)
+{
+    <partial name="_CarCardPartial" model="item" />
+}

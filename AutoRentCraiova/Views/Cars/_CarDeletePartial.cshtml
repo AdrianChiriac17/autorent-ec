@@ -1,0 +1,43 @@
+@model AutoRentCraiova.Models.Car
+
+<div class="modal-car-details">
+    <div class="modal-info-container">
+        <h3 class="modal-title" style="color: #e74c3c;">Confirmare Stergere</h3>
+        <p style="color: #bdc3c7; margin-bottom: 20px;">Esti sigur ca vrei sa stergi masina <strong>@Model.Brand @Model.Model (@Model.Year)</strong>?</p>
+
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+            <dl class="row" style="margin: 0;">
+                <dt class="col-sm-4" style="color: #bdc3c7; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
+                    Brand:
+                </dt>
+                <dd class="col-sm-8" style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
+                    @Html.DisplayFor(model => model.Brand)
+                </dd>
+                <dt class="col-sm-4" style="color: #bdc3c7; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
+                    Model:
+                </dt>
+                <dd class="col-sm-8" style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
+                    @Html.DisplayFor(model => model.Model)
+                </dd>
+                <dt class="col-sm-4" style="color: #bdc3c7; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
+                    An:
+                </dt>
+                <dd class="col-sm-8" style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
+                    @Html.DisplayFor(model => model.Year)
+                </dd>
+                <dt class="col-sm-4" style="color: #bdc3c7; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
+                    Pret/Zi:
+                </dt>
+                <dd class="col-sm-8" style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
+                    @Html.DisplayFor(model => model.PricePerDay) RON
+                </dd>
+            </dl>
+        </div>
+        
+        <form asp-action="Delete" method="post" style="display: flex; justify-content: flex-end; gap: 10px;">
+            <input type="hidden" asp-for="Id" />
+            <button type="button" class="btn-sexy-secondary custom-modal-close-btn" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); color: white;">Anuleaza</button>
+            <button type="submit" class="btn-sexy-primary" style="background: linear-gradient(135deg, #e74c3c, #c0392b); box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);">Sterge</button>
+        </form>
+    </div>
+</div>

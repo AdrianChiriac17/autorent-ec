@@ -1,0 +1,69 @@
+@model AutoRentCraiova.Models.Car
+
+<div class="car-card">
+    <div class="status-badge status-@((int)Model.Status)">
+        @Model.Status.ToString()
+    </div>
+    <div class="price-ribbon">
+        <span class="price-text">@Model.PricePerDay RON / zi</span>
+    </div>
+    <div class="car-image">
+        <img src="~/imagini/@(!string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "default-car.png")"
+             alt="@Model.Brand @Model.Model" style="max-width: 100%; height: auto;">
+    </div>
+
+    <div class="car-info">
+        <h3>@Model.Brand @Model.Model (@Model.Year)</h3>
+        <div class="car-specs" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; font-size: 0.85rem; color: #bdc3c7; background: rgba(0, 0, 0, 0.3); padding: 10px; border-radius: 10px; font-family: 'Montserrat', sans-serif;">
+            <span style="display: flex; align-items: center; gap: 4px;" title="Combustibil">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #2ecc71;"><path d="M3 22V8a5 5 0 0 1 10 0v14"></path><path d="M13 14h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6"></path><path d="M19 14v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2v-5"></path><path d="M8 22v-8"></path><path d="M8 10V6"></path></svg>
+                @Model.FuelType
+            </span>
+            <span style="color: rgba(255,255,255,0.2);">|</span>
+            <span style="display: flex; align-items: center; gap: 4px;" title="Transmisie">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #3498db;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle><line x1="12" y1="9" x2="12" y2="3"></line><line x1="9" y1="12" x2="3" y2="12"></line><line x1="15" y1="12" x2="21" y2="12"></line><line x1="12" y1="15" x2="12" y2="21"></line><line x1="10" y1="10" x2="6.5" y2="6.5"></line><line x1="14" y1="10" x2="17.5" y2="6.5"></line><line x1="10" y1="14" x2="6.5" y2="17.5"></line><line x1="14" y1="14" x2="17.5" y2="17.5"></line></svg>
+                @Model.Transmission
+            </span>
+            <span style="color: rgba(255,255,255,0.2);">|</span>
+            <span style="display: flex; align-items: center; gap: 4px;" title="Numar Locuri">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #e67e22;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                @Model.Seats
+            </span>
+            <span style="color: rgba(255,255,255,0.2);">|</span>
+            <span style="display: flex; align-items: center; gap: 4px;" title="Numar Usi">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #9b59b6;"><path d="M4 11V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"></path><path d="M2 16h20"></path><path d="M2 20h20"></path><path d="M6 16v4"></path><path d="M18 16v4"></path></svg>
+                @Model.Doors
+            </span>
+        </div>
+        <div class="car-footer">
+            <div class="actions" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                @if (User.IsInRole("FleetManager") || User.IsInRole("SystemAdministrator"))
+                {
+                    <select class="status-select" onchange="changeCarStatus(@Model.Id, this.value)">
+                        <option value="0" selected="@(Model.Status == CarStatus.Disponibila)">Disponibila</option>
+                        <option value="1" selected="@(Model.Status == CarStatus.InMentenanta)">Mentenanta</option>
+                        <option value="2" selected="@(Model.Status == CarStatus.Inchiriata)">Inchiriata</option>
+                    </select>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" data-car-id="@Model.Id" data-action-type="edit" class="action-btn btn-edit btn-open-modal" title="Edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        </button>
+                        <button type="button" data-car-id="@Model.Id" data-action-type="details" class="action-btn btn-details btn-open-modal" title="Detalii">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                        <button type="button" data-car-id="@Model.Id" data-action-type="delete" class="action-btn btn-delete btn-open-modal" title="Sterge">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <button type="button" data-car-id="@Model.Id" data-action-type="details" class="action-btn btn-details btn-open-modal" title="Detalii">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

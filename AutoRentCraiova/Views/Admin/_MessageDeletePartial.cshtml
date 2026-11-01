@@ -1,0 +1,19 @@
+@model AutoRentCraiova.Models.Contact
+
+<div class="car-details-modal-content" style="text-align: center; padding: 20px;">
+    <div style="margin-bottom: 20px; color: #e74c3c;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+    </div>
+    
+    <h2 style="margin-top: 0; color: #ffffff; font-family: 'Outfit', sans-serif;">Stergere Mesaj</h2>
+    <p style="color: #bdc3c7; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; margin-bottom: 30px;">
+        Esti sigur ca vrei sa stergi mesajul primit de la <strong style="color: #e74c3c;">@Model.Name</strong>?<br>
+        <span style="font-size: 0.9rem; color: #7f8c8d;">Aceasta actiune este ireversibila.</span>
+    </p>
+    
+    <form asp-action="Delete" asp-controller="Admin" method="post" style="display: flex; justify-content: center; gap: 15px;">
+        <input type="hidden" asp-for="Id" />
+        <button type="button" class="btn btn-secondary custom-modal-close-btn" style="background: rgba(255,255,255,0.1); border: none; color: white; padding: 10px 25px; border-radius: 8px; font-family: 'Outfit', sans-serif;">Anuleaza</button>
+        <button type="submit" class="btn btn-danger" style="background: #e74c3c; border: none; padding: 10px 25px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: bold; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);">Da, Sterge</button>
+    </form>
+</div>
