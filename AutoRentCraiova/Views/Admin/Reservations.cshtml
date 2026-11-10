@@ -1,0 +1,107 @@
+@model IEnumerable<AutoRentCraiova.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Gestioneaza Rezervari";
+}
+
+<section class="fleet-section" style="padding-top: 120px; min-height: 80vh;">
+    <div class="container">
+        <h2 class="section-title mb-4">Gestioneaza Rezervari</h2>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-hover" style="background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(10px); border-radius: 15px; overflow: hidden;">
+                <thead>
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th>Referinta</th>
+                        <th>Client</th>
+                        <th>Masina</th>
+                        <th>Perioada</th>
+                        <th>Pret Total</th>
+                        <th>Status Curent</th>
+                        <th>Actiuni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var res in Model)
+                    {
+                        <tr id="row-@res.Id">
+                            <td class="align-middle font-weight-bold">#@res.BookingReference</td>
+                            <td class="align-middle">@res.User.FullName<br><small class="text-muted">@res.User.Email</small></td>
+                            <td class="align-middle">@res.Car.Brand @res.Car.Model<br><small class="text-muted">@res.Car.LicensePlate</small></td>
+                            <td class="align-middle">@res.StartDate.ToString("dd MMM") - @res.EndDate.ToString("dd MMM yyyy")</td>
+                            <td class="align-middle text-success font-weight-bold">@res.TotalPrice RON</td>
+                            <td class="align-middle">
+                                <span class="badge @(res.Status == AutoRentCraiova.Models.ReservationStatus.Confirmed ? "badge-success" : (res.Status == AutoRentCraiova.Models.ReservationStatus.PendingApproval ? "badge-warning" : "badge-primary"))" id="status-badge-@res.Id">
+                                    @(res.Status == AutoRentCraiova.Models.ReservationStatus.PendingApproval ? "In Asteptare" : res.Status.ToString())
+                                </span>
+                            </td>
+                            <td class="align-middle">
+                                <div style="display: flex; gap: 8px;">
+                                    @if (res.Status == AutoRentCraiova.Models.ReservationStatus.PendingApproval)
+                                    {
+                                        <button class="btn btn-sm btn-success" onclick="confirmReservation(@res.Id)" style="font-family: 'Outfit', sans-serif;">Confirma</button>
+                                    }
+                                    <button class="btn btn-sm btn-info" onclick="verifyDocs(@res.Id)" style="font-family: 'Outfit', sans-serif;">Verifica Acte</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteReservation(@res.Id)" style="font-family: 'Outfit', sans-serif;">Sterge</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function confirmReservation(id) {
+            fetch('/Admin/ConfirmReservation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: `id=${id}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const badge = document.getElementById(`status-badge-${id}`);
+                    badge.innerText = "Confirmed";
+                    badge.className = 'badge badge-success';
+                    
+                    const row = document.getElementById(`row-${id}`);
+                    const confirmBtn = row.querySelector('.btn-success');
+                    if (confirmBtn) confirmBtn.style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function deleteReservation(id) {
+            if (confirm("Esti sigur ca vrei sa stergi aceasta rezervare?")) {
+                fetch('/Admin/DeleteReservation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: `id=${id}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const row = document.getElementById(`row-${id}`);
+                        if (row) row.remove();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        function verifyDocs(id) {
+            window.location.href = `/Admin/VerifyDocuments/${id}`;
+        }
+    </script>
+}

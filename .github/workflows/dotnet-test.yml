@@ -1,0 +1,42 @@
+# Numele workflow-ului, vizibil in tab-ul "Actions" de pe GitHub
+name: .NET Test Pipeline
+
+# Conditiile de declansare a workflow-ului
+on:
+  # Ruleaza la fiecare push pe branch-ul 'main'
+  push:
+    branches: [ "main" ]
+  # Ruleaza si la fiecare pull request deschis catre 'main'
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # Definim un singur job numit 'build-and-test'
+  build-and-test:
+    # Specificam sistemul de operare pe care va rula (masina virtuala de la GitHub)
+    runs-on: ubuntu-latest
+
+    steps:
+    # Pasul 1: Descarca codul din repository pe masina virtuala
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Pasul 2: Seteaza mediul de lucru cu versiunea corecta de .NET
+    # (Presupunem .NET 8.x, daca folosesti alta versiune, se poate schimba)
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    # Pasul 3: Restaureaza dependentele NuGet pentru toate proiectele
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Pasul 4: Compileaza toata solutia in modul 'Release' pentru a verifica daca exista erori
+    - name: Build solution
+      run: dotnet build --no-restore --configuration Release
+
+    # Pasul 5: Ruleaza toate testele din solutie
+    # '--no-build' este folosit pentru ca am compilat deja la pasul anterior
+    - name: Execute tests
+      run: dotnet test --no-build --verbosity normal --configuration Release

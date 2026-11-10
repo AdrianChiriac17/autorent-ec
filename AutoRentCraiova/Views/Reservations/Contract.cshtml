@@ -1,0 +1,225 @@
+@model AutoRentCraiova.Models.Reservation
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contract de Inchiriere - #@Model.BookingReference</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #2ecc71;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .logo span {
+            color: #2ecc71;
+        }
+
+        .contract-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2ecc71;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .data-item {
+            font-size: 14px;
+        }
+
+        .data-item strong {
+            color: #2c3e50;
+        }
+
+        .price-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+            text-align: right;
+            font-size: 18px;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+        }
+
+        .sign-box {
+            width: 40%;
+            text-align: center;
+        }
+
+        .sign-line {
+            border-bottom: 1px solid #333;
+            margin-top: 50px;
+        }
+
+        .print-btn-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-print {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2);
+            transition: all 0.3s;
+        }
+
+        .btn-print:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        @@media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .a4-container {
+                box-shadow: none;
+                width: 100%;
+                margin: 0;
+                padding: 10mm;
+            }
+            .print-btn-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-btn-container">
+        <button class="btn-print" onclick="window.print()">Salvare ca PDF (Print)</button>
+    </div>
+
+    <div class="a4-container">
+        <div class="header">
+            <div class="logo">Auto<span>Rent</span> Craiova</div>
+            <div style="text-align: right; font-size: 12px; color: #7f8c8d;">
+                Data generarii: @DateTime.Now.ToString("dd.MM.yyyy")<br />
+                Referinta: #@Model.BookingReference
+            </div>
+        </div>
+
+        <div class="contract-title">Contract de Inchiriere Auto</div>
+
+        <p style="font-size: 14px; text-align: justify; line-height: 1.6;">
+            Prezentul contract de inchiriere este incheiat astazi, @DateTime.Now.ToString("dd.MM.yyyy"), intre SC AutoRent SRL (denumit in continuare Locator) si clientul mentionat mai jos (denumit in continuare Locatar).
+        </p>
+
+        <div class="section-title">1. Datele Locatarului (Client)</div>
+        <div class="data-grid">
+            <div class="data-item"><strong>Nume si Prenume:</strong> @Model.User.FullName</div>
+            <div class="data-item"><strong>Email:</strong> @Model.User.Email</div>
+            <div class="data-item"><strong>CNP:</strong> @(string.IsNullOrEmpty(Model.User.CNP) ? "-" : Model.User.CNP)</div>
+        </div>
+
+        <div class="section-title">2. Obiectul Contractului (Autovehicul)</div>
+        <div class="data-grid">
+            <div class="data-item"><strong>Marca si Model:</strong> @Model.Car.Brand @Model.Car.Model (@Model.Car.Year)</div>
+            <div class="data-item"><strong>Numar Inmatriculare:</strong> @Model.Car.LicensePlate</div>
+            <div class="data-item"><strong>VIN (Serie Sasiu):</strong> @Model.Car.VIN</div>
+        </div>
+
+        <div class="section-title">3. Detaliile Inchirierii</div>
+        <div class="data-grid">
+            <div class="data-item"><strong>Data Preluarii:</strong> @Model.StartDate.ToString("dd.MM.yyyy")</div>
+            <div class="data-item"><strong>Data Returnarii:</strong> @Model.EndDate.ToString("dd.MM.yyyy")</div>
+            <div class="data-item"><strong>Pachet Asigurare:</strong> @Model.Insurance</div>
+            <div class="data-item">
+                <strong>Echipamente Extra:</strong> 
+                @(Model.HasGps ? "GPS " : "")
+                @(Model.HasChildSeat ? "Scaun Copil " : "")
+                @(Model.HasRoofRack ? "Portbagaj " : "")
+                @(!Model.HasGps && !Model.HasChildSeat && !Model.HasRoofRack ? "Niciunul" : "")
+            </div>
+        </div>
+
+        <div class="price-section">
+            <strong>TOTAL DE PLATA:</strong> <span style="color: #2ecc71;">@Model.TotalPrice RON</span>
+        </div>
+
+        <div class="section-title">4. Termeni si Conditii</div>
+        <p style="font-size: 12px; text-align: justify; line-height: 1.5; color: #555;">
+            Locatarul declara ca a preluat autovehiculul in stare buna de functionare, cu rezervorul plin si fara avarii vizibile, exceptie facand cele mentionate pe fisa de predare-primire. Returnarea se va face in aceleasi conditii, cu rezervorul la fel, la data si ora stabilite. Depasirea termenului de returnare se penalizeaza. In cazul unui accident din vina Locatarului, asigurarea acopera daunele conform pachetului ales, cu exceptia conducerii sub influenta bauturilor alcoolice.
+        </p>
+
+        <div class="signatures">
+            <div class="sign-box">
+                <div style="font-size: 14px; font-weight: 600;">LOCATOR (AutoRent)</div>
+                <div class="sign-line"></div>
+                <div style="font-size: 12px; margin-top: 5px;">Semnatura si Stampila</div>
+            </div>
+            <div class="sign-box">
+                <div style="font-size: 14px; font-weight: 600;">LOCATAR (@Model.User.FullName)</div>
+                <div class="sign-line"></div>
+                <div style="font-size: 12px; margin-top: 5px;">Semnatura in original / Digitala</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

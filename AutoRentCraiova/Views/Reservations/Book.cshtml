@@ -1,0 +1,106 @@
+@model AutoRentCraiova.Models.BookViewModel
+@{
+    ViewData["Title"] = "Rezerva Masina";
+}
+
+<section class="fleet-section" style="padding-top: 120px;">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Rezerva @Model.Car.Brand @Model.Car.Model</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="contact-form-card">
+                    <form asp-action="Book" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="CarId" />
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 form-group">
+                                <label asp-for="StartDate" class="control-label"></label>
+                                <input asp-for="StartDate" class="form-control bg-dark text-white" min="@DateTime.Today.ToString("yyyy-MM-dd")" onchange="calculateTotal()" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label asp-for="EndDate" class="control-label"></label>
+                                <input asp-for="EndDate" class="form-control bg-dark text-white" min="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")" onchange="calculateTotal()" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Insurance" class="control-label d-block mb-2"></label>
+                            <select asp-for="Insurance" asp-items="Html.GetEnumSelectList<AutoRentCraiova.Models.InsuranceType>()" class="form-control bg-dark text-white" onchange="calculateTotal()">
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-4 p-3 rounded" style="background: rgba(255,255,255,0.05);">
+                            <h5 class="text-white mb-3" style="font-family: 'Outfit', sans-serif;">Echipamente Extra</h5>
+                            <div class="form-check mb-2">
+                                <input asp-for="HasGps" class="form-check-input" onchange="calculateTotal()" />
+                                <label asp-for="HasGps" class="form-check-label text-white"></label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input asp-for="HasChildSeat" class="form-check-input" onchange="calculateTotal()" />
+                                <label asp-for="HasChildSeat" class="form-check-label text-white"></label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input asp-for="HasRoofRack" class="form-check-input" onchange="calculateTotal()" />
+                                <label asp-for="HasRoofRack" class="form-check-label text-white"></label>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info text-center" style="background: rgba(52, 152, 219, 0.1); border-color: #3498db; color: white;">
+                            <h4 class="mb-0">Pret Total: <span id="totalPrice" class="font-weight-bold" style="color: #2ecc71;">0</span> RON</h4>
+                            <small>Pret masina: @Model.Car.PricePerDay RON/zi</small>
+                        </div>
+
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" class="btn-sexy-primary px-5">Confirma Rezervarea</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const carPricePerDay = @Model.Car.PricePerDay;
+
+        function calculateTotal() {
+            const startInput = document.getElementById('StartDate').value;
+            const endInput = document.getElementById('EndDate').value;
+            if(!startInput || !endInput) return;
+
+            const start = new Date(startInput);
+            const end = new Date(endInput);
+            const diffTime = Math.abs(end - start);
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if(diffDays < 1) diffDays = 1;
+            if(start >= end) {
+                document.getElementById('totalPrice').innerText = "Data invalida";
+                return;
+            }
+
+            let insuranceCost = 0;
+            const insuranceType = document.getElementById('Insurance').value;
+            if (insuranceType == '1') insuranceCost = 50; // Standard
+            if (insuranceType == '2') insuranceCost = 100; // Full
+
+            let extrasCost = 0;
+            if (document.getElementById('HasGps').checked) extrasCost += 15;
+            if (document.getElementById('HasChildSeat').checked) extrasCost += 25;
+            if (document.getElementById('HasRoofRack').checked) extrasCost += 35;
+
+            const total = diffDays * (carPricePerDay + insuranceCost + extrasCost);
+            document.getElementById('totalPrice').innerText = total;
+        }
+
+        document.addEventListener('DOMContentLoaded', calculateTotal);
+    </script>
+}

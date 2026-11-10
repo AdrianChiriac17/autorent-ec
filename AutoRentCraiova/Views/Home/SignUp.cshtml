@@ -1,0 +1,51 @@
+@model AutoRentCraiova.Models.SignUpViewModel
+
+@{
+    ViewData["Title"] = "Inregistrare - AutoRent Craiova";
+}
+
+<div class="signup-page-wrapper">
+    <div class="login-container signup-container">
+        <div class="login-logo">
+            <img src="~/imagini/logo.png" alt="Logo">
+        </div>
+
+        <form asp-action="SignUp" class="login-form">
+            <h2>Cont Nou</h2>
+            <p class="auth-subtitle">Alatura-te comunitatii AutoRent</p>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="input-field">
+                <input asp-for="FullName" class="form-control" placeholder="Nume Complet" required>
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <input asp-for="Email" class="form-control" placeholder="Adresa Email" required>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <input asp-for="Phone" class="form-control" placeholder="Numar Telefon">
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <input asp-for="Password" class="form-control" placeholder="Parola" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn-sexy-primary" style="width: 100%; margin-top: 10px;">Creeaza Cont</button>
+
+            <p class="auth-note">
+                Ai deja cont? <a asp-controller="Home" asp-action="Login">Autentifica-te</a>
+            </p>
+            
+            <div style="margin-top: 20px;">
+                <a asp-controller="Home" asp-action="Index" class="btn-sexy-secondary" style="width: 100%;">← Inapoi la Acasa</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

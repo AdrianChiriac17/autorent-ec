@@ -1,0 +1,18 @@
+@model AutoRentCraiova.Models.Category
+
+<div class="modal-car-details" style="padding: 20px;">
+    <div class="modal-info-container">
+        <h2 class="modal-title" style="color: #ecf0f1; text-align: center; margin-bottom: 30px;">Detalii Categorie</h2>
+        
+        <div class="modal-price-section" style="justify-content: center;">
+            <span class="price-label" style="margin-right: 15px;">Nume Categorie:</span>
+            <div class="price-value">
+                <strong>@Model.Name</strong>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+            <button type="button" class="btn btn-secondary custom-modal-close-btn" style="background: rgba(255, 255, 255, 0.1); color: white; border: none; padding: 10px 30px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: bold; transition: 0.3s;">Inchide</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+@model IEnumerable<AutoRentCraiova.Models.PriceLog>
+
+@{
+    ViewData["Title"] = "Admin Panel - Loguri Preturi";
+}
+
+<section class="fleet-section">
+    <div class="container">
+        <div class="fleet-header">
+            <h2 class="section-title">Istoric Modificari Preturi</h2>
+            <div class="header-actions" style="display: flex; gap: 15px;">
+                <a asp-action="Index" class="btn btn-secondary" style="background-color: #34495e; border-color: #34495e; font-family: 'Outfit', sans-serif;">Inapoi la Mesaje</a>
+            </div>
+        </div>
+
+        <div class="contact-form-card" style="margin-top: 30px; max-width: 100%;">
+            <div class="table-responsive">
+                <table class="table table-dark table-striped" style="background: transparent; margin-bottom: 0;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #3498db;">
+                            <th style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; padding: 15px;">Data Modificarii</th>
+                            <th style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; padding: 15px;">Masina</th>
+                            <th style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; padding: 15px;">Pret Vechi</th>
+                            <th style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; padding: 15px;">Pret Nou</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td style="font-family: 'Montserrat', sans-serif; padding: 20px 15px; vertical-align: middle;">
+                                @item.ChangeDate.ToString("dd/MM/yyyy HH:mm")
+                            </td>
+                            <td style="font-family: 'Montserrat', sans-serif; padding: 20px 15px; vertical-align: middle;">
+                                <strong>@(item.Car != null ? $"{item.Car.Brand} {item.Car.Model}" : "Masina stearsa")</strong>
+                            </td>
+                            <td style="font-family: 'Montserrat', sans-serif; padding: 20px 15px; vertical-align: middle; color: #e74c3c;">
+                                @item.OldPrice RON
+                            </td>
+                            <td style="font-family: 'Montserrat', sans-serif; padding: 20px 15px; vertical-align: middle; color: #2ecc71;">
+                                @item.NewPrice RON
+                            </td>
+                        </tr>
+                    }
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 30px; font-family: 'Montserrat', sans-serif; color: #bdc3c7;">
+                                Nu exista modificari de pret inregistrate.
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

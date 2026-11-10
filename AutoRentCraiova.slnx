@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AutoRentCraiova.Tests/AutoRentCraiova.Tests.csproj" />
+  <Project Path="AutoRentCraiova/AutoRentCraiova.csproj" />
+</Solution>

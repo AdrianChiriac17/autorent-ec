@@ -1,0 +1,156 @@
+@model AutoRentCraiova.Models.Car
+
+@{
+    ViewData["Title"] = "Adauga Masina Noua";
+}
+
+<section class="fleet-section">
+    <div class="container">
+        <div class="fleet-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px;">
+            <h2 class="section-title" style="margin: 0;">Adauga o Masina Noua</h2>
+            <a asp-action="Index" class="btn-sexy-secondary">Inapoi la Flota</a>
+        </div>
+
+        <div class="contact-form-card" style="margin-top: 30px; max-width: 100%;">
+            <form asp-action="Create" method="post" enctype="multipart/form-data" class="login-form" style="background: transparent; padding: 0; box-shadow: none; max-width: 100%;">
+                @Html.AntiForgeryToken()
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="Brand" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Brand</label>
+                            <input asp-for="Brand" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="Brand" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="Model" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Model</label>
+                            <input asp-for="Model" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="Model" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="VIN" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Serie Sasiu (VIN)</label>
+                            <input asp-for="VIN" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="VIN" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="LicensePlate" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Numar Inmatriculare</label>
+                            <input asp-for="LicensePlate" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="LicensePlate" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="Year" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">An</label>
+                            <input asp-for="Year" type="number" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="Year" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="PricePerDay" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Pret / Zi (RON)</label>
+                            <input asp-for="PricePerDay" type="number" step="0.01" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="PricePerDay" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="Seats" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Numar Locuri</label>
+                            <input asp-for="Seats" type="number" min="2" max="9" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="Seats" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="Doors" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Numar Usi</label>
+                            <input asp-for="Doors" type="number" min="2" max="5" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="Doors" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="AverageConsumption" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Consum Mediu (L/100km)</label>
+                            <input asp-for="AverageConsumption" type="number" step="0.1" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="AverageConsumption" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px; padding-top: 35px; display: flex; align-items: center; gap: 10px;">
+                            <input asp-for="HasAC" type="checkbox" style="width: 20px; height: 20px; accent-color: #3498db;" />
+                            <label asp-for="HasAC" style="color: #ffffff; font-family: 'Montserrat', sans-serif; cursor: pointer; margin: 0;">Are Aer Conditionat</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="Transmission" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Transmisie</label>
+                            <select asp-for="Transmission" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff; cursor: pointer; appearance: auto;">
+                                <option value="" style="color: black;">-- Selecteaza Transmisia --</option>
+                                <option value="Manuala" style="color: black;">Manuala</option>
+                                <option value="Automata" style="color: black;">Automata</option>
+                            </select>
+                            <span asp-validation-for="Transmission" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="FuelType" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Combustibil</label>
+                            <select asp-for="FuelType" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff; cursor: pointer; appearance: auto;">
+                                <option value="" style="color: black;">-- Selecteaza Combustibilul --</option>
+                                <option value="Benzina" style="color: black;">Benzina</option>
+                                <option value="Benzina + GPL" style="color: black;">Benzina + GPL</option>
+                                <option value="Benzina + Hybrid" style="color: black;">Benzina + Hybrid</option>
+                                <option value="Diesel" style="color: black;">Diesel</option>
+                                <option value="Electric" style="color: black;">Electric</option>
+                            </select>
+                            <span asp-validation-for="FuelType" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="CategoryId" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Categorie Caroserie</label>
+                            <select asp-for="CategoryId" asp-items="ViewBag.CategoryId" required style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff; cursor: pointer; appearance: auto;">
+                                <option value="" style="color: black;">-- Selecteaza Categoria --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label asp-for="ImageFiles" style="color: #bdc3c7; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Imagini (PNG/JPG) - Poti selecta mai multe</label>
+                            <input asp-for="ImageFiles" type="file" multiple accept="image/png, image/jpeg, image/jpg" style="width: 100%; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; outline: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; background: rgba(255, 255, 255, 0.05); color: #ffffff;" />
+                            <span asp-validation-for="ImageFiles" class="text-danger" style="display: block; margin-top: 5px; font-size: 0.85rem;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-3 mt-2">
+                    <button type="submit" class="btn-sexy-primary">Adauga Masina</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

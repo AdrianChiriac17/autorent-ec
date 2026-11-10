@@ -1,0 +1,89 @@
+@using System.Security.Claims
+
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var isAuthenticated = User.Identity.IsAuthenticated;
+    var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+}
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AutoRent Craiova</title>
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+   
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index" class="logo-link">
+                    <img src="~/imagini/logo.png" alt="Logo" class="img-logo">
+                    Auto<span>Rent</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="@(currentController == "Home" && currentAction == "Index" ? "active" : "")"><a asp-controller="Home" asp-action="Index">Acasa</a></li>
+                <li class="@(currentController == "Cars" ? "active" : "")"><a asp-controller="Cars" asp-action="Index">Masini</a></li>
+                @if (User.IsInRole("SystemAdministrator"))
+                {
+                    <li class="@(currentController == "Admin" && currentAction == "Index" ? "active" : "")"><a asp-controller="Admin" asp-action="Index">Panou Administrator</a></li>
+                    <li class="@(currentController == "Admin" && currentAction == "Reservations" ? "active" : "")"><a asp-controller="Admin" asp-action="Reservations">Gestioneaza Rezervari</a></li>
+                }
+                <li class="@(currentController == "Home" && currentAction == "About" ? "active" : "")"><a asp-controller="Home" asp-action="About">Despre noi</a></li>
+                <li class="@(currentController == "Home" && currentAction == "Contact" ? "active" : "")"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                @if (isAuthenticated)
+                {
+                    <li class="@(currentController == "Reservations" && currentAction == "MyBookings" ? "active" : "")"><a asp-controller="Reservations" asp-action="MyBookings">Rezervarile Mele</a></li>
+                    <li class="@(currentController == "Home" && currentAction == "Profile" ? "active" : "")"><a asp-controller="Home" asp-action="Profile" class="btn-login">Profil</a></li>
+                    <li>
+                        <form asp-controller="Home" asp-action="Logout" method="post" style="margin:0;padding:0;display:inline;">
+                            <button type="submit" class="btn-logout">Logout</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="@(currentController == "Home" && currentAction == "Login" ? "active" : "")"><a asp-controller="Home" asp-action="Login" class="btn-login">Login</a></li>
+                    <li class="@(currentController == "Home" && currentAction == "SignUp" ? "active" : "")"><a asp-controller="Home" asp-action="SignUp" class="btn-signup">Sign Up</a></li>
+                }
+            </ul>
+        </nav>
+    </header>
+
+   
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div class="logo">
+                <span style="color: white; font-family: 'Archivo Black', sans-serif;">Auto<span style="color: #3498db;">Rent</span></span>
+            </div>
+            <p class="footer-description">Calatoreste in siguranta si confort alaturi de noi.</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                <a href="#" class="social-icon" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <a href="#" class="social-icon" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; @DateTime.Now.Year - AutoRent Craiova. Toate drepturile rezervate. | <a asp-area="" asp-controller="Home" asp-action="Privacy">Politica de Confidentialitate</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
