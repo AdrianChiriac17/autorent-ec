@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="catalog.html">AutoRent <span>Craiova</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="catalog.html">Cars</a>
+      <a href="#">Saved cars</a>
+      <a href="#">My rentals</a>
+    </nav>
+    <div class="top__user">
+      <a href="#">Ana Popescu</a>
+      <a class="cartlink" href="cart.html" aria-current="page">Cart <span class="keys" aria-hidden="true"><i></i><i></i><i class="out"></i></span><span class="visually-hidden">2 of 3 cars</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <h1>Your cart</h1>
+    <p class="muted" style="margin-top:8px">2 cars. One order can hold up to 3, so there is one hook left.</p>
+
+    <div class="hooks" role="img" aria-label="Two of three hooks hold a key: DJ 02 ARC and DJ 08 ARC">
+      <div><span class="tag">DJ 02 ARC</span></div>
+      <div><span class="tag">DJ 08 ARC</span></div>
+      <div><span class="tag tag--out">Free hook</span></div>
+    </div>
+
+    <div class="cart">
+      <div>
+        <article class="item slip" data-name="Dacia Logan" data-plate="DJ 02 ARC" data-rate="223" data-days="3">
+          <div class="item__img"><img src="assets/img/logan.png" alt="Silver Dacia Logan"></div>
+          <div>
+            <div class="item__head">
+              <h2><a href="car.html" style="color:inherit">Dacia Logan 2024</a></h2>
+              <span class="tag">DJ 02 ARC</span>
+            </div>
+            <p class="muted" style="margin:0">1.5 dCi 115 HP, automatic, heated seats, navigation, rear camera</p>
+            <div class="item__when">
+              <div class="field-read"><small>Pick-up</small><b>Sat 12 Dec, 10:00</b></div>
+              <div class="field-read"><small>Return</small><b>Tue 15 Dec, 10:00</b></div>
+              <div class="field-read"><small>Length</small><b>3 days</b></div>
+            </div>
+            <ul class="item__extras">
+              <li><label class="check"><input type="checkbox" checked> Child seat <span class="price">45 lei</span></label></li>
+              <li><label class="check"><input type="checkbox"> Roof box <span class="price">25 lei a day</span></label></li>
+              <li><label class="check"><input type="checkbox" checked> Additional driver <span class="price">50 lei</span></label></li>
+              <li><label class="check"><input type="checkbox"> Prepaid full tank <span class="price">300 lei once</span></label></li>
+            </ul>
+            <div class="item__foot">
+              <span><button class="btn btn--quiet" type="button">Change dates</button> <button class="btn btn--quiet" type="button">Remove</button></span>
+              <span><span class="muted">3 days × 223 lei + extras</span> &nbsp;<b class="num">764 lei</b></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item slip" data-name="Volkswagen Golf 8" data-plate="DJ 08 ARC" data-rate="370" data-days="2">
+          <div class="item__img"><img src="assets/img/golf8.png" alt="Grey Volkswagen Golf 8"></div>
+          <div>
+            <div class="item__head">
+              <h2><a href="car.html" style="color:inherit">Volkswagen Golf 8 2023</a></h2>
+              <span class="tag">DJ 08 ARC</span>
+            </div>
+            <p class="muted" style="margin:0">2.0 TDI 150 HP, automatic, heated seats, navigation, panoramic roof, adaptive cruise control</p>
+            <div class="item__when">
+              <div class="field-read"><small>Pick-up</small><b>Sat 19 Dec, 09:00</b></div>
+              <div class="field-read"><small>Return</small><b>Mon 21 Dec, 09:00</b></div>
+              <div class="field-read"><small>Length</small><b>2 days</b></div>
+            </div>
+            <ul class="item__extras">
+              <li><label class="check"><input type="checkbox"> Child seat <span class="price">15 lei a day</span></label></li>
+              <li><label class="check"><input type="checkbox"> Roof box <span class="price">25 lei a day</span></label></li>
+              <li><label class="check"><input type="checkbox"> Additional driver <span class="price">50 lei once</span></label></li>
+              <li><label class="check"><input type="checkbox"> Prepaid full tank <span class="price">300 lei once</span></label></li>
+            </ul>
+            <div class="item__foot">
+              <span><button class="btn btn--quiet" type="button">Change dates</button> <button class="btn btn--quiet" type="button">Remove</button></span>
+              <span><span class="muted">2 days × 370 lei</span> &nbsp;<b class="num">740 lei</b></span>
+            </div>
+          </div>
+        </article>
+
+        <div class="empty-hook">
+          <span><b>One hook left.</b> <span class="muted">Need a second car for the grandparents?</span></span>
+          <a class="btn" href="catalog.html">Add another car</a>
+        </div>
+      </div>
+
+      <aside class="sum slip" aria-label="Order summary">
+        <div class="perf" aria-hidden="true"></div>
+        <div class="sum__in">
+          <h2>Summary</h2>
+          <dl class="lines">
+            <div><dt>Dacia Logan, DJ 02 ARC</dt><dd>764 lei</dd></div>
+            <div><dt>Volkswagen Golf 8, DJ 08 ARC</dt><dd>740 lei</dd></div>
+            <div><dt>Pick-up place</dt><dd class="muted">chosen at checkout</dd></div>
+            <div class="total"><dt>Total so far</dt><dd>1,504 lei</dd></div>
+          </dl>
+          <p style="margin:18px 0 0"><a class="btn btn--primary btn--block" href="#">Go to checkout</a></p>
+          <hr>
+          <p style="margin:0"><span class="stamp stamp--ok">Both cars are free</span></p>
+          <p class="fine">Checked just now. We check again at checkout, and a car is held for you only once you start paying.</p>
+          <p class="fine">Pick-up at the AutoRent office is free. The airport is 50 lei and delivery in Craiova is 80 lei.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>

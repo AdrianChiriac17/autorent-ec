@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cars for 12–15 December | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<!-- Car outlines used where a model has no photo yet -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="car-hatch" viewBox="0 0 240 100">
+    <path fill="currentColor" d="M10 74c0-13 4-20 18-24l32-7c16-17 34-23 58-23h34c20 0 34 8 50 25l16 5c9 3 12 9 12 24v4H10z"/>
+    <path fill="#fff" opacity=".85" d="M70 44c12-12 26-17 44-17v17zm52-17h30c14 0 24 6 34 17h-64z"/>
+    <circle cx="62" cy="78" r="17" fill="#17202b"/><circle cx="62" cy="78" r="7" fill="#cbd2ce"/>
+    <circle cx="184" cy="78" r="17" fill="#17202b"/><circle cx="184" cy="78" r="7" fill="#cbd2ce"/>
+  </symbol>
+  <symbol id="car-suv" viewBox="0 0 240 100">
+    <path fill="currentColor" d="M8 76V54c0-8 4-12 14-14l34-5c14-17 30-23 54-23h58c18 0 30 8 42 24l14 4c7 2 8 8 8 16v20z"/>
+    <path fill="#fff" opacity=".85" d="M66 36c11-12 24-17 42-17v17zm50-17h50c12 0 22 6 30 17h-80z"/>
+    <circle cx="60" cy="78" r="19" fill="#17202b"/><circle cx="60" cy="78" r="8" fill="#cbd2ce"/>
+    <circle cx="186" cy="78" r="19" fill="#17202b"/><circle cx="186" cy="78" r="8" fill="#cbd2ce"/>
+  </symbol>
+  <symbol id="car-estate" viewBox="0 0 240 100">
+    <path fill="currentColor" d="M8 74c0-13 4-20 18-24l30-7c16-17 34-23 58-23h84c12 0 18 6 22 20l6 10c5 3 6 8 6 20v8H8z"/>
+    <path fill="#fff" opacity=".85" d="M66 44c12-12 26-17 44-17v17zm52-17h44v17h-44zm52 0h26c8 0 12 5 15 17h-41z"/>
+    <circle cx="60" cy="78" r="17" fill="#17202b"/><circle cx="60" cy="78" r="7" fill="#cbd2ce"/>
+    <circle cx="186" cy="78" r="17" fill="#17202b"/><circle cx="186" cy="78" r="7" fill="#cbd2ce"/>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="catalog.html">AutoRent <span>Craiova</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="catalog.html" aria-current="page">Cars</a>
+      <a href="#">Saved cars</a>
+      <a href="#">My rentals</a>
+    </nav>
+    <div class="top__user">
+      <a href="#">Ana Popescu</a>
+      <a class="cartlink" href="cart.html">Cart <span class="keys" aria-hidden="true"><i></i><i></i><i class="out"></i></span><span class="visually-hidden">2 of 3 cars</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="dates">
+  <div class="wrap dates__row">
+    <div class="field-read"><small>Pick-up</small><b>Sat 12 Dec 2026, 10:00</b></div>
+    <div class="field-read"><small>Return</small><b>Tue 15 Dec 2026, 10:00</b></div>
+    <div class="field-read"><small>Length</small><b>3 days</b></div>
+    <button class="btn" type="button">Change dates</button>
+  </div>
+</div>
+
+<main class="page">
+  <div class="wrap">
+    <div class="catalog__head">
+      <div>
+        <h1>Cars for 12–15 December</h1>
+        <p class="muted" style="margin-top:8px">32 models, 9 per page. You choose the exact car, down to its number plate.</p>
+      </div>
+    </div>
+
+    <div class="catalog">
+      <details class="filters slip" open>
+        <summary>Filters (2 applied)</summary>
+        <div>
+          <form>
+            <fieldset>
+              <legend>Type</legend>
+              <label class="check"><input type="checkbox"> City car <span class="count">9</span></label>
+              <label class="check"><input type="checkbox"> Family saloon <span class="count">8</span></label>
+              <label class="check"><input type="checkbox"> SUV <span class="count">8</span></label>
+              <label class="check"><input type="checkbox"> Estate <span class="count">7</span></label>
+            </fieldset>
+            <fieldset>
+              <legend>Brand</legend>
+              <label class="check"><input type="checkbox"> Dacia <span class="count">11</span></label>
+              <label class="check"><input type="checkbox"> Renault <span class="count">8</span></label>
+              <label class="check"><input type="checkbox"> Skoda <span class="count">7</span></label>
+              <label class="check"><input type="checkbox"> Volkswagen <span class="count">6</span></label>
+            </fieldset>
+            <fieldset>
+              <legend>Price per day, lei</legend>
+              <div class="range">
+                <input class="input" type="number" value="100" aria-label="Lowest price per day">
+                <span>to</span>
+                <input class="input" type="number" value="400" aria-label="Highest price per day">
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Gearbox</legend>
+              <label class="check"><input type="radio" name="gear"> Any</label>
+              <label class="check"><input type="radio" name="gear"> Manual</label>
+              <label class="check"><input type="radio" name="gear" checked> Automatic</label>
+            </fieldset>
+            <fieldset>
+              <legend>Engine</legend>
+              <label class="check"><input type="radio" name="engine" checked> Any</label>
+              <label class="check"><input type="radio" name="engine"> 1.0 TCe 90 HP</label>
+              <label class="check"><input type="radio" name="engine"> 1.5 dCi 115 HP</label>
+              <label class="check"><input type="radio" name="engine"> 1.5 TSI 150 HP</label>
+              <label class="check"><input type="radio" name="engine"> 2.0 TDI 150 HP</label>
+            </fieldset>
+            <fieldset>
+              <legend>Comfort</legend>
+              <label class="check"><input type="checkbox" checked> Heated seats</label>
+              <label class="check"><input type="checkbox"> Navigation</label>
+              <label class="check"><input type="checkbox"> Panoramic roof</label>
+            </fieldset>
+            <fieldset>
+              <legend>Driver assistance</legend>
+              <label class="check"><input type="checkbox"> Parking sensors</label>
+              <label class="check"><input type="checkbox"> Rear camera</label>
+              <label class="check"><input type="checkbox"> Adaptive cruise control</label>
+            </fieldset>
+            <fieldset>
+              <legend>Availability</legend>
+              <label class="check"><input type="checkbox"> Only models with a car free for my dates</label>
+            </fieldset>
+            <button class="btn btn--block" type="button">Clear all filters</button>
+          </form>
+        </div>
+      </details>
+
+      <section aria-label="Results">
+        <div class="catalog__tools">
+          <input class="input" type="search" placeholder="Search by model, for example Duster" aria-label="Search by model">
+          <select class="select" aria-label="Sort by">
+            <option>Price: low to high</option>
+            <option>Price: high to low</option>
+            <option>Best rated</option>
+            <option>Name A to Z</option>
+          </select>
+        </div>
+        <div class="applied">
+          <span class="muted">Showing 1–9 of 32 models with</span>
+          <a class="pill" href="#">Automatic</a>
+          <a class="pill" href="#">Heated seats</a>
+        </div>
+
+        <div class="grid">
+          <a class="model" href="car.html">
+            <div class="model__img" style="color:#7b8a99"><svg aria-hidden="true"><use href="#car-hatch"/></svg></div>
+            <div class="model__body">
+              <h3>Dacia Sandero</h3>
+              <span class="muted">2024, 5 seats, city car</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.5 from 22 reviews</span>
+              <p class="model__price">from <b>140</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i></i><i class="out"></i></span> 2 of 3 cars free</p>
+            </div>
+          </a>
+          <a class="model" href="car.html">
+            <div class="model__img"><img src="assets/img/logan.png" alt="Silver Dacia Logan"></div>
+            <div class="model__body">
+              <h3>Dacia Logan</h3>
+              <span class="muted">2024, 5 seats, family saloon</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.6 from 18 reviews</span>
+              <p class="model__price">from <b>150</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i></i><i></i><i class="out"></i></span> 3 of 4 cars free</p>
+            </div>
+          </a>
+          <a class="model" href="car.html">
+            <div class="model__img" style="color:#3f6fa8"><svg aria-hidden="true"><use href="#car-hatch"/></svg></div>
+            <div class="model__body">
+              <h3>Skoda Fabia</h3>
+              <span class="muted">2023, 5 seats, city car</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.4 from 9 reviews</span>
+              <p class="model__price">from <b>170</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i></i></span> 2 of 2 cars free</p>
+            </div>
+          </a>
+          <a class="model" href="car.html">
+            <div class="model__img" style="color:#c2552d"><svg aria-hidden="true"><use href="#car-hatch"/></svg></div>
+            <div class="model__body">
+              <h3>Renault Clio</h3>
+              <span class="muted">2023, 5 seats, city car</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.7 from 31 reviews</span>
+              <p class="model__price">from <b>180</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i class="out"></i></span> 1 of 2 cars free</p>
+            </div>
+          </a>
+          <a class="model" href="car.html">
+            <div class="model__img" style="color:#5d6b4f"><svg aria-hidden="true"><use href="#car-estate"/></svg></div>
+            <div class="model__body">
+              <h3>Dacia Jogger</h3>
+              <span class="muted">2024, 7 seats, estate</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.3 from 12 reviews</span>
+              <p class="model__price">from <b>210</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i></i><i></i></span> 3 of 3 cars free</p>
+            </div>
+          </a>
+          <a class="model is-out" href="car.html">
+            <div class="model__img" style="color:#b9862b"><svg aria-hidden="true"><use href="#car-suv"/></svg></div>
+            <div class="model__body">
+              <h3>Dacia Duster</h3>
+              <span class="muted">2024, 5 seats, SUV</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.8 from 40 reviews</span>
+              <p class="model__price">from <b>220</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i class="out"></i><i class="out"></i></span> None free until 16 Dec</p>
+            </div>
+          </a>
+          <a class="model" href="car.html">
+            <div class="model__img" style="color:#2f5d62"><svg aria-hidden="true"><use href="#car-suv"/></svg></div>
+            <div class="model__body">
+              <h3>Renault Captur</h3>
+              <span class="muted">2023, 5 seats, SUV</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.5 from 15 reviews</span>
+              <p class="model__price">from <b>230</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i></i><i class="out"></i></span> 2 of 3 cars free</p>
+            </div>
+          </a>
+          <a class="model" href="car.html">
+            <div class="model__img"><img src="assets/img/golf8.png" alt="Grey Volkswagen Golf 8"></div>
+            <div class="model__body">
+              <h3>Volkswagen Golf 8</h3>
+              <span class="muted">2023, 5 seats, city car</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.9 from 27 reviews</span>
+              <p class="model__price">from <b>250</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i class="out"></i></span> 1 of 2 cars free</p>
+            </div>
+          </a>
+          <a class="model" href="car.html">
+            <div class="model__img" style="color:#3b4654"><svg aria-hidden="true"><use href="#car-estate"/></svg></div>
+            <div class="model__body">
+              <h3>Skoda Octavia Combi</h3>
+              <span class="muted">2024, 5 seats, estate</span>
+              <span class="muted"><span class="stars" aria-hidden="true">★</span> 4.7 from 19 reviews</span>
+              <p class="model__price">from <b>260</b> lei a day</p>
+              <p class="model__free"><span class="keys" aria-hidden="true"><i></i><i></i></span> 2 of 2 cars free</p>
+            </div>
+          </a>
+        </div>
+
+        <nav class="pager" aria-label="Pages">
+          <span class="muted">Page 1 of 4</span>
+          <ol>
+            <li><span class="here" aria-current="page">1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">Next</a></li>
+          </ol>
+        </nav>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+  </div>
+</footer>
+
+<script>
+  // Filters start collapsed on narrow screens
+  if (window.matchMedia('(max-width: 960px)').matches) document.querySelector('.filters').open = false;
+</script>
+<script src="assets/mock.js"></script>
+</body>
+</html>
