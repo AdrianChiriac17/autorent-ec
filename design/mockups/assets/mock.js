@@ -28,7 +28,7 @@
   }
 
   /* ================= Catalog: filter, search, sort ================= */
-  var grid = document.querySelector('.grid');
+  var grid = document.querySelector('.catalog .grid');
   if (grid) {
     var MODELS = {
       'Dacia Sandero':       { type: 'City car',      gear: ['Manual', 'Automatic'], engine: ['1.0 TCe 90 HP'], has: ['Navigation', 'Parking sensors'], free: 2 },
@@ -279,5 +279,127 @@
       refresh();
     });
     refresh();
+  }
+
+  /* ================= Round 2: shared small behaviours ================= */
+
+  // Lists that can be narrowed by tabs and a search box.
+  // <div class="tabs" data-tabs="#list">, <input data-search="#list">, rows carry data-status.
+  function applyList(target) {
+    var id = '#' + target.id;
+    var bar = document.querySelector('[data-tabs="' + id + '"]');
+    var box = document.querySelector('[data-search="' + id + '"]');
+    var want = bar ? bar.querySelector('[aria-pressed="true"]').dataset.value : 'all';
+    var q = box ? box.value.trim().toLowerCase() : '';
+    var shown = 0;
+    target.querySelectorAll('[data-status]').forEach(function (row) {
+      var ok = (want === 'all' || row.dataset.status.split(' ').indexOf(want) > -1) && (!q || row.closest('thead') || row.textContent.toLowerCase().indexOf(q) > -1);
+      row.hidden = !ok;
+      if (ok && !row.closest('thead')) shown++;
+    });
+    var none = document.querySelector('[data-empty="' + id + '"]');
+    if (none) none.hidden = shown > 0;
+  }
+  document.querySelectorAll('[data-tabs]').forEach(function (bar) {
+    var target = document.querySelector(bar.dataset.tabs);
+    bar.addEventListener('click', function (event) {
+      var button = event.target.closest('button');
+      if (!button) return;
+      bar.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+      applyList(target);
+    });
+    applyList(target);
+  });
+  document.querySelectorAll('[data-search]').forEach(function (box) {
+    box.addEventListener('input', function () { applyList(document.querySelector(box.dataset.search)); });
+  });
+
+  // Forms: data-go sends you on, data-done shows a confirmation in place.
+  document.querySelectorAll('form[data-go], form[data-done]').forEach(function (formEl) {
+    formEl.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (formEl.dataset.go) { window.location.href = formEl.dataset.go; return; }
+      var note = formEl.querySelector('.notice') || el('p', 'notice');
+      note.textContent = formEl.dataset.done;
+      note.setAttribute('role', 'status');
+      formEl.prepend(note);
+      note.scrollIntoView({ block: 'nearest' });
+    });
+  });
+
+  // Home: length of the rental under the date fields
+  var heroForm = document.querySelector('.hero__form');
+  if (heroForm) {
+    var hf = heroForm.querySelectorAll('input'), hint = heroForm.querySelector('p');
+    var showLength = function () {
+      var a = new Date(hf[0].value), b = new Date(hf[1].value);
+      hint.textContent = b > a ? days(Math.ceil((b - a) / 864e5)) + '. A started day counts as a full day.' : 'The return must be after the pick-up.';
+    };
+    heroForm.addEventListener('input', showLength);
+    showLength();
+  }
+
+  // Model page: hide the keys that are out
+  var onlyFree = document.querySelector('#only-free');
+  if (onlyFree) onlyFree.addEventListener('change', function () {
+    document.querySelectorAll('.hook.is-out').forEach(function (h) { h.hidden = onlyFree.checked; });
+  });
+
+  // Checkout: the pick-up place sets the fee and the total
+  var pickups = document.querySelectorAll('input[name="pickup"]');
+  if (pickups.length) {
+    var SUB = 1504, feeOut = document.querySelector('#fee'), totalOut = document.querySelector('#total'), where = document.querySelector('#deliver-to');
+    var setFee = function () {
+      var chosen = document.querySelector('input[name="pickup"]:checked'), fee = +chosen.dataset.fee;
+      feeOut.textContent = fee ? lei(fee) : 'free';
+      totalOut.textContent = lei(SUB + fee);
+      where.hidden = chosen.value !== 'delivery';
+      where.querySelector('input').required = chosen.value === 'delivery';
+    };
+    pickups.forEach(function (r) { r.addEventListener('change', setFee); });
+    setFee();
+  }
+
+  // Order placed: pretend the card payment went through
+  var pay = document.querySelector('#pay');
+  if (pay) pay.addEventListener('click', function () {
+    document.querySelector('#pay-state').className = 'stamp stamp--ok';
+    document.querySelector('#pay-state').textContent = 'Paid';
+    document.querySelector('#pay-title').textContent = 'Paid. Your keys are waiting.';
+    document.querySelector('#pay-text').textContent = 'Both cars are reserved for you. Bring your driving licence and this order number to the pick-up.';
+    document.querySelectorAll('[data-after-pay]').forEach(function (n) { n.hidden = false; });
+    pay.hidden = true;
+  });
+
+  // Saved cars: remove one
+  var saved = document.querySelector('#saved');
+  if (saved) saved.addEventListener('click', function (event) {
+    var button = event.target.closest('button[data-remove]');
+    if (!button) return;
+    button.closest('.model').remove();
+    var left = saved.querySelectorAll('.model').length;
+    document.querySelector('#saved-count').textContent = left === 1 ? '1 car saved.' : left + ' cars saved.';
+    document.querySelector('#saved-empty').hidden = left > 0;
+  });
+
+  // Admin orders: changing the status updates the row
+  var STATUS_CHIP = { 'new': 'chip chip--wait', 'paid': 'chip chip--paid', 'handed': 'chip chip--road', 'returned': 'chip', 'cancelled': 'chip chip--no' };
+  document.querySelectorAll('select[data-order-status]').forEach(function (sel) {
+    sel.addEventListener('change', function () {
+      var row = sel.closest('tr'), chip = row.querySelector('.chip');
+      row.dataset.status = sel.value;
+      chip.className = STATUS_CHIP[sel.value];
+      chip.textContent = sel.options[sel.selectedIndex].text;
+    });
+  });
+
+  // Photo thumbnails on pages without the booking panel
+  if (!document.querySelector('.book')) {
+    document.querySelectorAll('.thumbs button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        document.querySelector('.photo img').src = button.querySelector('img').src;
+        document.querySelectorAll('.thumbs button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+      });
+    });
   }
 })();
