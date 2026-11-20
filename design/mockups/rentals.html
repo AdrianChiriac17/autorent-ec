@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My rentals | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="home.html">AutoRent <span>Craiova</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="catalog.html">Cars</a>
+      <a href="saved.html">Saved cars</a>
+      <a href="rentals.html" aria-current="page">My rentals</a>
+    </nav>
+    <div class="top__user">
+      <a href="account.html">Ana Popescu</a>
+      <a class="cartlink" href="cart.html">Cart <span class="keys" aria-hidden="true"><i></i><i></i><i class="out"></i></span><span class="visually-hidden">2 of 3 cars</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap" style="max-width:900px">
+    <h1>My rentals</h1>
+    <div class="tabs" data-tabs="#orders" style="margin:20px 0">
+      <button type="button" data-value="all" aria-pressed="true">All</button>
+      <button type="button" data-value="upcoming" aria-pressed="false">Upcoming</button>
+      <button type="button" data-value="road" aria-pressed="false">On the road</button>
+      <button type="button" data-value="past" aria-pressed="false">Past</button>
+    </div>
+    <div class="stack" id="orders">
+      <article class="rental slip" data-status="upcoming">
+        <div class="row row--between"><h2 style="font-size:1.25rem"><a href="rental.html" style="color:inherit">Order AR-2026-000147</a></h2><span class="chip chip--wait">Awaiting payment</span></div>
+        <p class="muted" style="margin:4px 0 0">Placed today. Pick-up at the AutoRent office.</p>
+        <ul class="rental__cars"><li><span class="tag tag--sm">DJ 02 ARC</span> Dacia Logan <span class="muted">12 to 15 Dec</span></li><li><span class="tag tag--sm">DJ 08 ARC</span> Volkswagen Golf 8 <span class="muted">19 to 21 Dec</span></li></ul>
+        <div class="row row--between"><span><a class="btn btn--primary" href="order-placed.html">Pay now</a> <button class="btn btn--quiet" type="button">Cancel order</button></span><b class="num" style="font-size:1.25rem">1,504 lei</b></div>
+      </article>
+      <article class="rental slip" data-status="upcoming">
+        <div class="row row--between"><h2 style="font-size:1.25rem"><a href="rental.html" style="color:inherit">Order AR-2026-000131</a></h2><span class="chip chip--paid">Paid</span></div>
+        <p class="muted" style="margin:4px 0 0">Placed 14 Nov. Pick-up at Craiova International Airport.</p>
+        <ul class="rental__cars"><li><span class="tag tag--sm">DJ 05 ARC</span> Renault Clio <span class="muted">28 to 30 Nov</span></li></ul>
+        <div class="row row--between"><span><a href="rental.html">See details</a> <button class="btn btn--quiet" type="button">Cancel order</button></span><b class="num" style="font-size:1.25rem">410 lei</b></div>
+      </article>
+      <article class="rental slip" data-status="road">
+        <div class="row row--between"><h2 style="font-size:1.25rem"><a href="rental.html" style="color:inherit">Order AR-2026-000098</a></h2><span class="chip chip--road">On the road</span></div>
+        <p class="muted" style="margin:4px 0 0">Placed 2 Nov. Return to the AutoRent office by Sun 22 Nov, 10:00.</p>
+        <ul class="rental__cars"><li><span class="tag tag--sm">DJ 03 ARC</span> Dacia Duster <span class="muted">18 to 22 Nov</span></li></ul>
+        <div class="row row--between"><span><a href="rental.html">See details</a></span><b class="num" style="font-size:1.25rem">1,012 lei</b></div>
+      </article>
+      <article class="rental slip" data-status="past">
+        <div class="row row--between"><h2 style="font-size:1.25rem"><a href="rental.html" style="color:inherit">Order AR-2026-000052</a></h2><span class="chip ">Returned</span></div>
+        <p class="muted" style="margin:4px 0 0">Placed 28 Sep. Returned 13 Oct.</p>
+        <ul class="rental__cars"><li><span class="tag tag--sm">DJ 02 ARC</span> Dacia Logan <span class="muted">10 to 13 Oct</span></li></ul>
+        <div class="row row--between"><span><a href="rental.html">See details and write a review</a></span><b class="num" style="font-size:1.25rem">669 lei</b></div>
+      </article>
+      <article class="rental slip" data-status="past">
+        <div class="row row--between"><h2 style="font-size:1.25rem"><a href="rental.html" style="color:inherit">Order AR-2026-000040</a></h2><span class="chip chip--no">Cancelled</span></div>
+        <p class="muted" style="margin:4px 0 0">Placed 3 Sep. Cancelled 4 Sep, nothing was charged.</p>
+        <ul class="rental__cars"><li><span class="tag tag--sm">DJ 09 ARC</span> Skoda Octavia Combi <span class="muted">20 to 24 Sep</span></li></ul>
+        <div class="row row--between"><span><a href="rental.html">See details</a></span><b class="num" style="font-size:1.25rem">1,040 lei</b></div>
+      </article>
+    </div>
+    <div class="slip slip--pad" data-empty="#orders" hidden style="margin-top:16px"><h3>Nothing here</h3><p class="muted" style="margin:6px 0 0">No rental matches this tab. <a href="catalog.html">Browse cars</a></p></div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>

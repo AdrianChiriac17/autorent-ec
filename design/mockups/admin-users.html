@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin users | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top top--admin">
+  <div class="wrap top__row">
+    <a class="brand" href="admin-dashboard.html">AutoRent <span>admin</span></a>
+    <nav class="nav" aria-label="Admin">
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-orders.html">Orders</a>
+      <a href="admin-fleet.html">Fleet</a>
+      <a href="admin-users.html" aria-current="page">Users</a>
+    </nav>
+    <div class="top__user">
+      <a href="catalog.html">Back to the shop</a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <h1>Users</h1>
+    <div class="row row--between" style="margin:20px 0">
+      <p class="muted" style="margin:0">6 accounts</p>
+      <input class="input" style="max-width:300px" type="search" data-search="#users" placeholder="Name or email" aria-label="Search users">
+    </div>
+    <div class="slip tablewrap">
+      <table class="table">
+        <thead><tr><th>Name</th><th>Email</th><th>City</th><th>Admin</th><th>Can log in</th></tr></thead>
+        <tbody id="users">
+<tr data-status="user"><td><b>AutoRent Admin</b> <span class="chip">You</span></td><td>admin@autorent.local</td><td>Craiova</td><td><input class="switch" type="checkbox" checked disabled aria-label="AutoRent Admin is an admin"></td><td><input class="switch" type="checkbox" checked disabled aria-label="AutoRent Admin can log in"></td></tr>
+<tr data-status="user"><td><b>Ana Popescu</b></td><td>ana.popescu@autorent.local</td><td>Craiova</td><td><input class="switch" type="checkbox" aria-label="Ana Popescu is an admin"></td><td><input class="switch" type="checkbox" checked aria-label="Ana Popescu can log in"></td></tr>
+<tr data-status="user"><td><b>Mihai Ionescu</b></td><td>mihai.ionescu@autorent.local</td><td>Craiova</td><td><input class="switch" type="checkbox" aria-label="Mihai Ionescu is an admin"></td><td><input class="switch" type="checkbox" checked aria-label="Mihai Ionescu can log in"></td></tr>
+<tr data-status="user"><td><b>Ioana Stan</b></td><td>ioana.stan@example.com</td><td>Slatina</td><td><input class="switch" type="checkbox" aria-label="Ioana Stan is an admin"></td><td><input class="switch" type="checkbox" checked aria-label="Ioana Stan can log in"></td></tr>
+<tr data-status="user"><td><b>Radu Marin</b></td><td>radu.marin@example.com</td><td>Bucharest</td><td><input class="switch" type="checkbox" aria-label="Radu Marin is an admin"></td><td><input class="switch" type="checkbox" checked aria-label="Radu Marin can log in"></td></tr>
+<tr data-status="user"><td><b>Paul Weber</b></td><td>paul.weber@example.com</td><td>Vienna</td><td><input class="switch" type="checkbox" aria-label="Paul Weber is an admin"></td><td><input class="switch" type="checkbox" aria-label="Paul Weber can log in"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slip slip--pad" data-empty="#users" hidden style="margin-top:16px"><h3>No user matches</h3><p class="muted" style="margin:6px 0 0">Check the spelling or search by email.</p></div>
+    <p class="fine">You cannot remove your own admin rights or block your own account. A blocked user is logged out on their next request.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>

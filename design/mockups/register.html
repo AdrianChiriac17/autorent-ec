@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create account | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="home.html">AutoRent <span>Craiova</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="catalog.html">Cars</a>
+      <a href="saved.html">Saved cars</a>
+      <a href="rentals.html">My rentals</a>
+    </nav>
+    <div class="top__user">
+      <a href="login.html">Log in</a>
+      <a class="btn" href="register.html">Create account</a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <form class="auth slip slip--pad" data-go="catalog.html">
+      <h1>Create account</h1>
+      <p class="muted">You need an account to rent, so your cart and orders stay with you.</p>
+      <div class="field"><label for="g-name">Full name</label><input class="input" id="g-name" autocomplete="name" minlength="2" required></div>
+      <div class="field"><label for="g-mail">Email</label><input class="input" id="g-mail" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="g-phone">Phone, optional</label><input class="input" id="g-phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="g-pass">Password</label><input class="input" id="g-pass" type="password" autocomplete="new-password" minlength="8" required><small>At least 8 characters.</small></div>
+      <button class="btn btn--primary btn--block" type="submit">Create account</button>
+      <p style="margin:16px 0 0">Already have one? <a href="login.html">Log in</a></p>
+    </form>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>

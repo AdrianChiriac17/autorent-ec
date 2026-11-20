@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin fleet | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top top--admin">
+  <div class="wrap top__row">
+    <a class="brand" href="admin-dashboard.html">AutoRent <span>admin</span></a>
+    <nav class="nav" aria-label="Admin">
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-orders.html">Orders</a>
+      <a href="admin-fleet.html" aria-current="page">Fleet</a>
+      <a href="admin-users.html">Users</a>
+    </nav>
+    <div class="top__user">
+      <a href="catalog.html">Back to the shop</a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <div class="row row--between"><h1>Fleet</h1><span class="row"><button class="btn" type="button">Add a model</button><button class="btn btn--primary" type="button">Add a car</button></span></div>
+    <div class="row row--between" style="margin:20px 0">
+      <div class="tabs" data-tabs="#fleet">
+        <button type="button" data-value="cars" aria-pressed="true">Cars (42)</button>
+        <button type="button" data-value="models" aria-pressed="false">Models (32)</button>
+      </div>
+      <input class="input" style="max-width:300px" type="search" data-search="#fleet" placeholder="Plate, model or VIN" aria-label="Search the fleet">
+    </div>
+    <div id="fleet">
+      <div class="slip tablewrap">
+        <table class="table">
+          <thead><tr data-status="cars"><th>Plate</th><th>Model</th><th>VIN</th><th>Fitted</th><th class="r">Per day</th><th>Status</th><th></th></tr>
+                 <tr data-status="models"><th>Brand</th><th>Model</th><th>Year</th><th>Seats</th><th class="r">Base per day</th><th class="r">Cars</th><th>In the shop</th><th></th></tr></thead>
+          <tbody>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 01 ARC</span></td><td>Dacia Logan</td><td class="muted">UU1LOGAN024000001</td><td>1.0 TCe, manual, parking sensors</td><td class="r">155 lei</td><td><select class="select" aria-label="Status of DJ 01 ARC"><option selected>Available</option><option>In maintenance</option><option>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 02 ARC</span></td><td>Dacia Logan</td><td class="muted">UU1LOGAN024000002</td><td>1.5 dCi, automatic, heated seats, navigation, rear camera</td><td class="r">223 lei</td><td><select class="select" aria-label="Status of DJ 02 ARC"><option selected>Available</option><option>In maintenance</option><option>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 03 ARC</span></td><td>Dacia Duster</td><td class="muted">UU1DUSTR024000001</td><td>1.5 dCi, manual, navigation, rear camera</td><td class="r">265 lei</td><td><select class="select" aria-label="Status of DJ 03 ARC"><option selected>Available</option><option>In maintenance</option><option>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 04 ARC</span></td><td>Dacia Duster</td><td class="muted">UU1DUSTR024000002</td><td>1.0 TCe, automatic, heated seats, parking sensors</td><td class="r">265 lei</td><td><select class="select" aria-label="Status of DJ 04 ARC"><option selected>Available</option><option>In maintenance</option><option>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 05 ARC</span></td><td>Renault Clio</td><td class="muted">VF1CLIO5023000001</td><td>1.0 TCe, manual, navigation</td><td class="r">190 lei</td><td><select class="select" aria-label="Status of DJ 05 ARC"><option selected>Available</option><option>In maintenance</option><option>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 08 ARC</span></td><td>Volkswagen Golf 8</td><td class="muted">WVWGOLF8023000002</td><td>2.0 TDI, automatic, heated seats, navigation, panoramic roof, adaptive cruise</td><td class="r">370 lei</td><td><select class="select" aria-label="Status of DJ 08 ARC"><option selected>Available</option><option>In maintenance</option><option>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 11 ARC</span></td><td>Dacia Logan</td><td class="muted">UU1LOGAN024000003</td><td>1.0 TCe, automatic, heated seats</td><td class="r">185 lei</td><td><select class="select" aria-label="Status of DJ 11 ARC"><option>Available</option><option selected>In maintenance</option><option>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="cars"><td><span class="tag tag--sm">DJ 19 ARC</span></td><td>Skoda Fabia</td><td class="muted">TMBFABIA023000001</td><td>1.5 TSI, manual, rear camera</td><td class="r">178 lei</td><td><select class="select" aria-label="Status of DJ 19 ARC"><option>Available</option><option>In maintenance</option><option selected>Retired</option></select></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="models"><td>Dacia</td><td><b>Logan</b></td><td>2024</td><td>5</td><td class="r">150 lei</td><td class="r">4</td><td><input class="switch" type="checkbox" checked aria-label="Logan is shown in the shop"></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="models"><td>Dacia</td><td><b>Duster</b></td><td>2024</td><td>5</td><td class="r">220 lei</td><td class="r">2</td><td><input class="switch" type="checkbox" checked aria-label="Duster is shown in the shop"></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="models"><td>Dacia</td><td><b>Sandero</b></td><td>2024</td><td>5</td><td class="r">140 lei</td><td class="r">3</td><td><input class="switch" type="checkbox" checked aria-label="Sandero is shown in the shop"></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="models"><td>Renault</td><td><b>Clio</b></td><td>2023</td><td>5</td><td class="r">180 lei</td><td class="r">2</td><td><input class="switch" type="checkbox" checked aria-label="Clio is shown in the shop"></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="models"><td>Skoda</td><td><b>Octavia Combi</b></td><td>2024</td><td>5</td><td class="r">260 lei</td><td class="r">2</td><td><input class="switch" type="checkbox" checked aria-label="Octavia Combi is shown in the shop"></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="models"><td>Volkswagen</td><td><b>Golf 8</b></td><td>2023</td><td>5</td><td class="r">250 lei</td><td class="r">2</td><td><input class="switch" type="checkbox" checked aria-label="Golf 8 is shown in the shop"></td><td><a href="#">Edit</a></td></tr>
+<tr data-status="models"><td>Volkswagen</td><td><b>Passat</b></td><td>2019</td><td>5</td><td class="r">240 lei</td><td class="r">0</td><td><input class="switch" type="checkbox" aria-label="Passat is shown in the shop"></td><td><a href="#">Edit</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="fine">A car's daily price is its model's base price plus what is fitted to it. Retired cars stay in past orders but can no longer be rented.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>
