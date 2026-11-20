@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/AutoRent.Api/AutoRent.Api.csproj" />
+    <Project Path="backend/AutoRent.Application/AutoRent.Application.csproj" />
+    <Project Path="backend/AutoRent.Domain/AutoRent.Domain.csproj" />
+    <Project Path="backend/AutoRent.Infrastructure/AutoRent.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AutoRent.IntegrationTests/AutoRent.IntegrationTests.csproj" />
+    <Project Path="tests/AutoRent.UnitTests/AutoRent.UnitTests.csproj" />
+  </Folder>
+</Solution>
