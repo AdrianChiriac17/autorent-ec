@@ -671,8 +671,6 @@ These milestones express **priority, not a promised delivery schedule**.
 1. `AutoRent_ERD_v3.mmd` — **frozen physical/logical table-level design**, 23 entities, exact fields and relationships.
 2. `AutoRent_Craiova_P1.pdf` — original team scope, proposed stack and bonus selection.
 3. `Project Specification (1).pdf` — official E-Commerce A1–A12, bonuses, P2/P3 acceptance criteria.
-4. `AutoRent_Final_Tech_Stack.md` — earlier technology rationale; **superseded where it mentions Identity/three roles**.
-5. `model-baza-de-date-aplicatie-veche.md` — the original WAD SQLite database; migration reference only.
-6. https://github.com/AdrianChiriac17/autorent-ec — source repository; new modules to be implemented separately from the original MVC app.
+4. https://github.com/AdrianChiriac17/autorent-ec — source repository; new modules to be implemented separately from the original MVC app.
 
 **Document rule:** do not substitute the legacy SQLite model, the P1 conceptual categories or a generated diagram screenshot for the exact v3 Mermaid schema. Update this handbook together with any approved architecture/API change.
