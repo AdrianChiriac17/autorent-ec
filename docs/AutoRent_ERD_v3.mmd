@@ -1,0 +1,219 @@
+---
+title: AutoRent Craiova — Final Database Schema (v3)
+---
+erDiagram
+    %% 01 | CATALOG & FLEET
+    CarBrands {
+        bigint Id PK
+        varchar Name UK
+    }
+    CarModels {
+        bigint Id PK
+        bigint CarBrandId FK
+        varchar Name
+        smallint ModelYear
+        smallint Seats
+        decimal BasePricePerDay
+        text Description
+        boolean IsActive
+    }
+    CarModelImages {
+        bigint Id PK
+        bigint CarModelId FK
+        varchar ImageUrl
+        int SortOrder
+        boolean IsPrimary
+    }
+    FeatureDefinitions {
+        bigint Id PK
+        varchar Name UK
+        enum FeatureGroup
+        boolean UniquePerCar
+    }
+    CarFeatures {
+        bigint Id PK
+        bigint CarModelId FK
+        bigint FeatureDefinitionId FK
+        decimal ExtraPricePerDay
+        boolean IsActive
+    }
+    Cars {
+        bigint Id PK
+        bigint CarModelId FK
+        varchar VIN UK
+        varchar LicensePlate UK
+        varchar Status
+        boolean IsActive
+    }
+    CarFeatureAssignments {
+        bigint CarId PK, FK
+        bigint CarFeatureId PK, FK
+    }
+
+    %% 02 | USERS & CART
+    Users {
+        bigint Id PK
+        varchar Email UK
+        text PasswordHash
+        varchar FullName
+        varchar Phone
+        boolean IsAdmin
+        boolean IsAccountActive
+        text AddressLine
+        varchar City
+        varchar County
+        varchar PostalCode
+        varchar Country
+    }
+    Carts {
+        bigint Id PK
+        bigint UserId FK, UK
+        timestamptz UpdatedAt
+    }
+    CartItems {
+        bigint Id PK
+        bigint CartId FK
+        bigint CarId FK
+        timestamptz StartDate
+        timestamptz EndDate
+    }
+    ExtraOptions {
+        bigint Id PK
+        varchar Name UK
+        decimal Price
+        varchar PricingType
+        boolean IsActive
+    }
+    CartItemExtraOptions {
+        bigint CartItemId PK, FK
+        bigint ExtraOptionId PK, FK
+        decimal PriceSnapshot
+        varchar PricingTypeSnapshot
+    }
+    WishlistItems {
+        bigint UserId PK, FK
+        bigint CarId PK, FK
+    }
+
+    %% 03 | ORDERS & PAYMENTS
+    PickupLocations {
+        bigint Id PK
+        varchar Name
+        text Address
+        decimal Fee
+        boolean IsActive
+    }
+    Orders {
+        bigint Id PK
+        bigint UserId FK
+        bigint PickupLocationId FK
+        varchar OrderNumber UK
+        varchar Status
+        varchar PaymentStatus
+        decimal Subtotal
+        decimal PickupFeeSnapshot
+        decimal TotalAmount
+        varchar Currency
+        text BillingAddressSnapshot
+        timestamptz CreatedAt
+    }
+    OrderItems {
+        bigint Id PK
+        bigint OrderId FK
+        bigint CarId FK
+        timestamptz StartDate
+        timestamptz EndDate
+        decimal BasePriceSnapshot
+        decimal LineTotal
+        varchar CarDescriptionSnapshot
+    }
+    OrderItemFeatures {
+        bigint OrderItemId PK, FK
+        bigint CarFeatureId PK, FK
+        varchar NameSnapshot
+        decimal PricePerDaySnapshot
+    }
+    OrderItemExtraOptions {
+        bigint OrderItemId PK, FK
+        bigint ExtraOptionId PK, FK
+        varchar NameSnapshot
+        decimal PriceSnapshot
+        varchar PricingTypeSnapshot
+    }
+    Payments {
+        bigint Id PK
+        bigint OrderId FK
+        varchar Provider
+        varchar StripeSessionId UK
+        varchar StripePaymentIntentId
+        decimal Amount
+        varchar Status
+        timestamptz ConfirmedAt
+    }
+    PaymentWebhookEvents {
+        bigint Id PK
+        bigint PaymentId FK
+        varchar StripeEventId UK
+        varchar EventType
+        timestamptz ProcessedAt
+    }
+
+    %% 04 | RESERVATIONS & REVIEWS
+    Reservations {
+        bigint Id PK
+        bigint OrderItemId FK, UK
+        bigint CarId FK
+        varchar BookingReference UK
+        timestamptz ExpiresAt
+        timestamptz CreatedAt
+        timestamptz StartDate
+        timestamptz EndDate
+        varchar Status
+    }
+    MaintenanceBlocks {
+        bigint Id PK
+        bigint CarId FK
+        timestamptz StartDate
+        timestamptz EndDate
+        text Reason
+    }
+    Reviews {
+        bigint Id PK
+        bigint UserId FK
+        bigint ReservationId FK, UK
+        bigint CarModelId FK
+        smallint Rating
+        text Comment
+        boolean IsHidden
+    }
+
+    CarBrands ||--o{ CarModels : makes
+    CarModels ||--o{ CarModelImages : "has gallery"
+    CarModels ||--o{ CarFeatures : "prices feature"
+    CarModels ||--o{ Cars : "has units"
+    CarModels ||--o{ Reviews : "is reviewed"
+    FeatureDefinitions ||--o{ CarFeatures : "defines"
+    CarFeatures ||--o{ CarFeatureAssignments : "assigned as"
+    CarFeatures ||--o{ OrderItemFeatures : "snapshotted as"
+    Cars ||--o{ CarFeatureAssignments : "has installed"
+    Cars ||--o{ CartItems : "in cart"
+    Cars ||--o{ WishlistItems : "wishlisted"
+    Cars ||--o{ OrderItems : "ordered"
+    Cars ||--o{ Reservations : "occupied by"
+    Cars ||--o{ MaintenanceBlocks : "blocked by"
+    Users ||--o| Carts : owns
+    Users ||--o{ WishlistItems : saves
+    Users ||--o{ Orders : places
+    Users ||--o{ Reviews : writes
+    Carts ||--o{ CartItems : contains
+    CartItems ||--o{ CartItemExtraOptions : "selects"
+    ExtraOptions ||--o{ CartItemExtraOptions : "selected in cart"
+    ExtraOptions ||--o{ OrderItemExtraOptions : "snapshotted as"
+    PickupLocations ||--o{ Orders : "pickup for"
+    Orders ||--|{ OrderItems : contains
+    Orders ||--o{ Payments : "paid by"
+    OrderItems ||--o{ OrderItemFeatures : "features"
+    OrderItems ||--o{ OrderItemExtraOptions : "add-ons"
+    OrderItems ||--o| Reservations : "reserves"
+    Payments ||--o{ PaymentWebhookEvents : "confirmed by"
+    Reservations ||--o| Reviews : "reviewed in"
