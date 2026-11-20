@@ -71,6 +71,7 @@ OLD/        The legacy ASP.NET MVC + SQLite app, kept for reference only
 
 ## Documentation
 
+- [Project specification](docs/specification.html): the presentable version, a single HTML file to open in a browser
 - [Development specification](docs/DEVELOPMENT_SPEC.md): architecture, rules, API conventions, A1–A12 mapping
 - [Implemented API](docs/api.md): routes, access levels and error codes
 - [Database schema (ERD v3)](docs/AutoRent_ERD_v3.mmd), also available [as an image](docs/AutoRent_ERD_v3.svg)

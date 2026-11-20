@@ -3,7 +3,8 @@
 **Version:** 1.0 · **Date:** 2026-11-19 · **Status:** Approved architecture; database schema frozen at ERD v3  
 **Repository:** https://github.com/AdrianChiriac17/autorent-ec  
 **Database source of truth:** [`AutoRent_ERD_v3.mmd`](./AutoRent_ERD_v3.mmd)  
-**Audience:** All AutoRent contributors, reviewers and future mobile-app developers.
+**Audience:** All AutoRent contributors, reviewers and future mobile-app developers.  
+**Presentable version:** [`specification.html`](./specification.html). Update it together with this file.
 
 > **IMPORTANT — source-of-truth hierarchy.** This document records the decisions made by the team after the original P1 slides and technology-stack notes. Where older files mention ASP.NET Identity, `CarOffers`, `FleetManager`, `Categories`, `UserAddresses`, `CarAllocations` or `PriceLogs`, **this document and ERD v3 take precedence for the new application**. Do not quietly reintroduce removed entities. Any change to the frozen DB must be discussed explicitly, documented and migrated.
 >
