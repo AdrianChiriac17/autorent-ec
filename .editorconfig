@@ -45,3 +45,14 @@ dotnet_naming_symbols.private_fields.applicable_kinds = field
 dotnet_naming_symbols.private_fields.applicable_accessibilities = private
 dotnet_naming_style.underscore_camel.required_prefix = _
 dotnet_naming_style.underscore_camel.capitalization = camel_case
+
+# LoggerMessage source generators are not worth the ceremony at this project's size.
+dotnet_diagnostic.CA1848.severity = none
+
+# EF Core migrations are generated code.
+[**/Migrations/*.cs]
+generated_code = true
+
+# Test names use underscores to read as sentences.
+[tests/**.cs]
+dotnet_diagnostic.CA1707.severity = none

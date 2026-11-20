@@ -4,7 +4,7 @@ The rules protecting `main`, kept as code. GitHub does not read these files auto
 
 | File | Rules | Bypass |
 |---|---|---|
-| `main-protection.json` | PR required, no force-push, no deletion, linear history, squash-only merges | Nobody |
+| `main-protection.json` | PR required, no force-push, no deletion, linear history, squash-only merges, CI jobs `Backend` and `Frontend` must pass | Nobody |
 | `main-review.json` | 1 approving review, stale approvals dismissed on push, review threads resolved | Repository admins, only when merging a PR |
 
 They are split in two so that the admin bypass applies to the review requirement only, never to the history protections.

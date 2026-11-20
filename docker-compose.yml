@@ -1,0 +1,23 @@
+# Local development database. Values come from .env (copy .env.example first).
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: autorent-db
+    restart: unless-stopped
+    # Passed through from .env; no values live in this file.
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - autorent-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  autorent-db-data:
