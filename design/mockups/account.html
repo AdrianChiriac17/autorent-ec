@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My account | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="home.html">AutoRent <span>Craiova</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="catalog.html">Cars</a>
+      <a href="saved.html">Saved cars</a>
+      <a href="rentals.html">My rentals</a>
+    </nav>
+    <div class="top__user">
+      <a href="account.html" aria-current="page">Ana Popescu</a>
+      <a class="cartlink" href="cart.html">Cart <span class="keys" aria-hidden="true"><i></i><i></i><i class="out"></i></span><span class="visually-hidden">2 of 3 cars</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap" style="max-width:760px">
+    <div class="row row--between"><h1>My account</h1><a class="btn" href="login.html">Log out</a></div>
+    <div class="stack" style="margin-top:24px">
+      <form class="slip slip--pad" data-done="Your details are saved.">
+        <h2 style="margin-bottom:14px">Your details</h2>
+        <div class="cols2">
+          <div class="field"><label for="a-name">Full name</label><input class="input" id="a-name" value="Ana Popescu" required></div>
+          <div class="field"><label for="a-phone">Phone</label><input class="input" id="a-phone" type="tel" value="0744 123 456"></div>
+        </div>
+        <div class="field"><label for="a-mail">Email</label><input class="input" id="a-mail" type="email" value="ana.popescu@autorent.local" disabled><small>You log in with this address. It cannot be changed here.</small></div>
+        <button class="btn btn--primary" type="submit">Save details</button>
+      </form>
+
+      <form class="slip slip--pad" data-done="Your address is saved. We will fill it in at checkout.">
+        <h2 style="margin-bottom:6px">Billing address</h2>
+        <p class="muted">Filled in for you at checkout. You have one saved address.</p>
+        <div class="field"><label for="a-addr">Street and number</label><input class="input" id="a-addr" value="Str. Alexandru Ioan Cuza 14, ap. 6" required></div>
+        <div class="cols3">
+          <div class="field"><label for="a-city">City</label><input class="input" id="a-city" value="Craiova" required></div>
+          <div class="field"><label for="a-county">County</label><input class="input" id="a-county" value="Dolj" required></div>
+          <div class="field"><label for="a-zip">Postal code</label><input class="input" id="a-zip" value="200585" required></div>
+        </div>
+        <div class="field"><label for="a-country">Country</label><input class="input" id="a-country" value="Romania" required></div>
+        <button class="btn btn--primary" type="submit">Save address</button>
+      </form>
+
+      <form class="slip slip--pad" data-done="Your password is changed.">
+        <h2 style="margin-bottom:14px">Change password</h2>
+        <div class="field"><label for="a-old">Current password</label><input class="input" id="a-old" type="password" required></div>
+        <div class="field"><label for="a-new">New password</label><input class="input" id="a-new" type="password" minlength="8" required><small>At least 8 characters.</small></div>
+        <button class="btn" type="submit">Change password</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="home.html">AutoRent <span>Craiova</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="catalog.html">Cars</a>
+      <a href="saved.html">Saved cars</a>
+      <a href="rentals.html">My rentals</a>
+    </nav>
+    <div class="top__user">
+      <a href="login.html">Log in</a>
+      <a class="btn" href="register.html">Create account</a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <form class="auth slip slip--pad" data-go="catalog.html">
+      <h1>Log in</h1>
+      <p class="muted">Your cart and saved cars are waiting.</p>
+      <div class="field"><label for="l-mail">Email</label><input class="input" id="l-mail" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="l-pass">Password</label><input class="input" id="l-pass" type="password" autocomplete="current-password" required></div>
+      <button class="btn btn--primary btn--block" type="submit">Log in</button>
+      <p style="margin:16px 0 0">New here? <a href="register.html">Create an account</a></p>
+    </form>
+    <div class="auth" style="margin-top:16px"><p class="notice notice--bad" style="margin:0"><b>How an error looks:</b> Email or password is incorrect.</p></div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>

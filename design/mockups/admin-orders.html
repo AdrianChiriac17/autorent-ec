@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin orders | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top top--admin">
+  <div class="wrap top__row">
+    <a class="brand" href="admin-dashboard.html">AutoRent <span>admin</span></a>
+    <nav class="nav" aria-label="Admin">
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-orders.html" aria-current="page">Orders</a>
+      <a href="admin-fleet.html">Fleet</a>
+      <a href="admin-users.html">Users</a>
+    </nav>
+    <div class="top__user">
+      <a href="catalog.html">Back to the shop</a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <h1>Orders</h1>
+    <div class="row row--between" style="margin:20px 0">
+      <div class="tabs" data-tabs="#orders">
+        <button type="button" data-value="all" aria-pressed="true">All</button>
+        <button type="button" data-value="new" aria-pressed="false">New</button>
+        <button type="button" data-value="paid" aria-pressed="false">Paid</button>
+        <button type="button" data-value="handed" aria-pressed="false">Handed over</button>
+        <button type="button" data-value="returned" aria-pressed="false">Returned</button>
+        <button type="button" data-value="cancelled" aria-pressed="false">Cancelled</button>
+      </div>
+      <input class="input" style="max-width:300px" type="search" data-search="#orders" placeholder="Order number, name or plate" aria-label="Search orders">
+    </div>
+    <div class="slip tablewrap">
+      <table class="table">
+        <thead><tr><th>Order</th><th>Customer</th><th>Cars</th><th>Dates</th><th class="r">Total</th><th>Payment</th><th>Status</th><th>Change to</th></tr></thead>
+        <tbody id="orders">
+<tr data-status="new"><td><a href="rental.html">AR-2026-000147</a></td><td>Ana Popescu</td><td><span class="tag tag--sm">DJ 02 ARC</span> <span class="tag tag--sm">DJ 08 ARC</span></td><td>12 to 21 Dec</td><td class="r">1,504 lei</td><td>Unpaid</td><td><span class="chip chip--wait">New</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000147"><option value="new" selected>New</option><option value="paid">Paid</option><option value="handed">Handed over</option><option value="returned">Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="paid"><td><a href="rental.html">AR-2026-000146</a></td><td>Paul Weber</td><td><span class="tag tag--sm">DJ 21 ARC</span></td><td>20 to 27 Nov</td><td class="r">2,170 lei</td><td>Paid</td><td><span class="chip chip--paid">Paid</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000146"><option value="new">New</option><option value="paid" selected>Paid</option><option value="handed">Handed over</option><option value="returned">Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="paid"><td><a href="rental.html">AR-2026-000139</a></td><td>Radu Marin</td><td><span class="tag tag--sm">DJ 05 ARC</span></td><td>20 to 23 Nov</td><td class="r">615 lei</td><td>Paid</td><td><span class="chip chip--paid">Paid</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000139"><option value="new">New</option><option value="paid" selected>Paid</option><option value="handed">Handed over</option><option value="returned">Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="paid"><td><a href="rental.html">AR-2026-000131</a></td><td>Ana Popescu</td><td><span class="tag tag--sm">DJ 05 ARC</span></td><td>28 to 30 Nov</td><td class="r">410 lei</td><td>Paid</td><td><span class="chip chip--paid">Paid</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000131"><option value="new">New</option><option value="paid" selected>Paid</option><option value="handed">Handed over</option><option value="returned">Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="handed"><td><a href="rental.html">AR-2026-000120</a></td><td>Ioana Stan</td><td><span class="tag tag--sm">DJ 14 ARC</span></td><td>16 to 20 Nov</td><td class="r">980 lei</td><td>Paid</td><td><span class="chip chip--road">Handed over</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000120"><option value="new">New</option><option value="paid">Paid</option><option value="handed" selected>Handed over</option><option value="returned">Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="handed"><td><a href="rental.html">AR-2026-000098</a></td><td>Ana Popescu</td><td><span class="tag tag--sm">DJ 03 ARC</span></td><td>18 to 22 Nov</td><td class="r">1,012 lei</td><td>Paid</td><td><span class="chip chip--road">Handed over</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000098"><option value="new">New</option><option value="paid">Paid</option><option value="handed" selected>Handed over</option><option value="returned">Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="handed"><td><a href="rental.html">AR-2026-000091</a></td><td>Mihai Ionescu</td><td><span class="tag tag--sm">DJ 07 ARC</span></td><td>17 to 20 Nov</td><td class="r">594 lei</td><td>Paid</td><td><span class="chip chip--road">Handed over</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000091"><option value="new">New</option><option value="paid">Paid</option><option value="handed" selected>Handed over</option><option value="returned">Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="returned"><td><a href="rental.html">AR-2026-000052</a></td><td>Ana Popescu</td><td><span class="tag tag--sm">DJ 02 ARC</span></td><td>10 to 13 Oct</td><td class="r">669 lei</td><td>Paid</td><td><span class="chip">Returned</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000052"><option value="new">New</option><option value="paid">Paid</option><option value="handed">Handed over</option><option value="returned" selected>Returned</option><option value="cancelled">Cancelled</option></select></td></tr>
+<tr data-status="cancelled"><td><a href="rental.html">AR-2026-000040</a></td><td>Ana Popescu</td><td><span class="tag tag--sm">DJ 09 ARC</span></td><td>20 to 24 Sep</td><td class="r">1,040 lei</td><td>Unpaid</td><td><span class="chip chip--no">Cancelled</span></td><td><select class="select" data-order-status aria-label="Status of order AR-2026-000040"><option value="new">New</option><option value="paid">Paid</option><option value="handed">Handed over</option><option value="returned">Returned</option><option value="cancelled" selected>Cancelled</option></select></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slip slip--pad" data-empty="#orders" hidden style="margin-top:16px"><h3>No order matches</h3><p class="muted" style="margin:6px 0 0">Try another status or a shorter search.</p></div>
+    <p class="fine">"Handed over" and "Returned" are the course statuses Shipped and Delivered. Only a confirmed card payment can set Payment to Paid.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>

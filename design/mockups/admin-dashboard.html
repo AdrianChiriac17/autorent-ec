@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin dashboard | AutoRent Craiova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/mock.css">
+</head>
+<body>
+
+<header class="top top--admin">
+  <div class="wrap top__row">
+    <a class="brand" href="admin-dashboard.html">AutoRent <span>admin</span></a>
+    <nav class="nav" aria-label="Admin">
+      <a href="admin-dashboard.html" aria-current="page">Dashboard</a>
+      <a href="admin-orders.html">Orders</a>
+      <a href="admin-fleet.html">Fleet</a>
+      <a href="admin-users.html">Users</a>
+    </nav>
+    <div class="top__user">
+      <a href="catalog.html">Back to the shop</a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <h1>Dashboard</h1>
+    <p class="muted" style="margin-top:8px">Friday 20 November 2026</p>
+    <div class="stats" style="margin-top:20px">
+      <div class="stat slip"><span class="muted">Paid this month</span><b>35,400 lei</b><span class="muted">61 orders</span></div>
+      <div class="stat slip"><span class="muted">On the road now</span><b>7 of 42 cars</b><span class="muted">2 due back today</span></div>
+      <div class="stat slip"><span class="muted">Awaiting payment</span><b>4 orders</b><span class="muted">5,210 lei not yet paid</span></div>
+      <div class="stat slip"><span class="muted">In maintenance</span><b>2 cars</b><span class="muted">DJ 11 ARC, DJ 23 ARC</span></div>
+    </div>
+
+    <div class="two band">
+      <section class="slip slip--pad">
+        <h2 style="margin-bottom:4px">Paid orders per week</h2>
+        <p class="muted">Thousands of lei, week starting on the date shown. This week is still running.</p>
+        <div class="bars" role="img" aria-label="Paid per week, from 8.1 thousand lei in late September to 14.6 thousand in early November"><div><span class="num">8.1k</span><i style="height:46%"></i>28 Sep</div><div><span class="num">9.4k</span><i style="height:54%"></i>5 Oct</div><div><span class="num">11.2k</span><i style="height:64%"></i>12 Oct</div><div><span class="num">10.3k</span><i style="height:59%"></i>19 Oct</div><div><span class="num">12.9k</span><i style="height:74%"></i>26 Oct</div><div><span class="num">14.6k</span><i style="height:84%"></i>2 Nov</div><div><span class="num">13.1k</span><i style="height:75%"></i>9 Nov</div><div><span class="num">7.7k</span><i style="height:44%"></i>16 Nov</div></div>
+      </section>
+      <section class="slip slip--pad">
+        <h2 style="margin-bottom:10px">Today at the counter</h2>
+        <table class="table">
+          <tbody>
+            <tr><td>10:00</td><td>Hand over <span class="tag tag--sm">DJ 05 ARC</span></td><td>Radu Marin</td></tr>
+            <tr><td>10:00</td><td>Return of <span class="tag tag--sm">DJ 14 ARC</span></td><td>Ioana Stan</td></tr>
+            <tr><td>14:30</td><td>Airport hand-over <span class="tag tag--sm">DJ 21 ARC</span></td><td>Paul Weber</td></tr>
+            <tr><td>18:00</td><td>Return of <span class="tag tag--sm">DJ 07 ARC</span></td><td>Mihai Ionescu</td></tr>
+          </tbody>
+        </table>
+        <p style="margin:12px 0 0"><a href="admin-orders.html">Go to orders</a></p>
+      </section>
+    </div>
+
+    <section class="band slip slip--pad">
+      <h2 style="margin-bottom:10px">Models that earn the most this month</h2>
+      <div class="tablewrap"><table class="table">
+        <thead><tr><th>Model</th><th class="r">Rentals</th><th class="r">Days rented</th><th class="r">Paid</th><th class="r">Rating</th></tr></thead>
+        <tbody>
+          <tr><td>Dacia Duster</td><td class="r">14</td><td class="r">52</td><td class="r">12,480 lei</td><td class="r">4.8</td></tr>
+          <tr><td>Volkswagen Golf 8</td><td class="r">9</td><td class="r">27</td><td class="r">8,910 lei</td><td class="r">4.9</td></tr>
+          <tr><td>Dacia Logan</td><td class="r">13</td><td class="r">41</td><td class="r">7,650 lei</td><td class="r">4.6</td></tr>
+          <tr><td>Skoda Octavia Combi</td><td class="r">6</td><td class="r">19</td><td class="r">5,720 lei</td><td class="r">4.7</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span>AutoRent office, Str. Unirii 1, Craiova</span>
+    <span>Open every day, 08:00 to 20:00</span>
+    <span>0251 555 010</span>
+    <span><a href="index.html">All mockup pages</a></span>
+  </div>
+</footer>
+<script src="assets/mock.js"></script>
+</body>
+</html>
